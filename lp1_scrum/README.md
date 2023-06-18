@@ -3,6 +3,7 @@ METODOLOGIA SCRUM
 RESUMO DO QUE É E O QUE TEM:
 
 Usuários:
+    
     Product Owner: Responsável por definir os objetivos do projeto e priorizar as tarefas. (diz quais são as tarefas).
 
     Scrum Master: Facilita o processo, remove obstáculos e promove a adoção das práticas do Scrum. (atribui as tarefas aos usuário).
@@ -14,16 +15,19 @@ Usuários:
 
 
 Backlog:
+    
     É uma lista de todas as funcionalidades, melhorias e correções a serem feitas no projeto, priorizadas pelo Product Owner.(listas das tarefas que pode ser alteradas de acordo com o andamento
     do projeto).
 
 4 Status de tarefa:
+
     TAREFAS A FAZER
     TAREFAS EM ANDAMENTO
     TAREFAS EM FASE DE TESTE
     TAREFAS CONCLUÍDAS
 
 Sprints:
+
     Após definir as tarefas e quem vai realizá-las, essas tarefas são colocadas em uma sprint (duração 2 semanas).
 
     Após passar ‘n’ dias do início da sprint gerar um relatório sobre tarefas concluídas e tarefas pendentes.
@@ -40,6 +44,7 @@ As estruturas de TADs (Tipos Abstratos de Dados)
  Estrutura:
 
 CLASSE: Usuário/Pessoa
+
     Atributos:
         ponteiro pro prox
         Nome
@@ -78,6 +83,7 @@ CLASSE: Usuário/Pessoa
 
 
 CLASSE: Backlog
+
     Atributos:
         (lista duplamente encadeada ordenada de tarefa-> ordenar por pontos de esforço)
         head
@@ -90,6 +96,7 @@ CLASSE: Backlog
         consultar
 
 CLASSE: tarefa (ponteiro)
+
     Atributos:
         ponteiro(endereço)
         id (padrão: #+número)
@@ -102,6 +109,7 @@ CLASSE: tarefa (ponteiro)
 
 
 CLASSE: Sprint (2 semanas)
+
     Atributos:
         (lista duplamente encadeada de tarefa)
         head
