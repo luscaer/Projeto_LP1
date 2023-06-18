@@ -3,7 +3,7 @@
 using namespace std;
 
 class Pessoa {
-    private:
+    protected:
         Pessoa* proximo;
         string nome;
         string funcao;
