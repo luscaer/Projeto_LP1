@@ -23,6 +23,6 @@ class Sprint{
         int getTempoPassado();
         void setQuantidade(int quantidade);
         int getQuantidade();
-        int gerarRelatorio(); //gerar relatório pôs ‘n’ tempo passado
+        int gerarRelatorio(int tempo); //gerar relatório pôs ‘n’ tempo passado
         int gerarRelatorioDe(Dev * p);//gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação).
 };
