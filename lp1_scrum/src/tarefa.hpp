@@ -1,5 +1,41 @@
 #include "../include/tarefa.h"
 
+//status de tarefa, não iniciada, em andamento, em teste, concluida
+
+Tarefa::Tarefa(){
+  this->id = 0;//id começa em 1
+  this->PontosDeEsforco = 0; 
+  this->instrucoes="";
+  this->responsavel= NULL;
+  this->status="";
+}
+
+Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes){
+  this->id = id;//id começa em 1
+  this->PontosDeEsforco = PontosDeEsforco; 
+  this->instrucoes=instrucoes;
+  this->responsavel= NULL;
+  this->status="não iniciada";
+}
+
+Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel){
+  this->id = id;//id começa em 1
+  this->PontosDeEsforco = PontosDeEsforco; 
+  this->instrucoes=instrucoes;
+  this->responsavel= responsavel;
+  this->status="não iniciada";
+}
+
+Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel, string status){
+  this->id = id;//id começa em 1
+  this->PontosDeEsforco = PontosDeEsforco; 
+  this->instrucoes =instrucoes;
+  this->responsavel = responsavel;
+  this->status = status;
+}
+
+Tarefa::~Tarefa(){}
+
 void Tarefa::setProximo(Tarefa * proximo){
   this->proximo = proximo;
 }
