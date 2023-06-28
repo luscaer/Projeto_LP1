@@ -1,5 +1,21 @@
 #include "../include/sprint.h"
 
+Sprint::Sprint(){
+  this->cabeca = NULL;
+  this->cauda = NULL;
+  this->tempoPassado=0;//tempo passado em dias
+  this->quantidade=0;//quantidade de tarefas na sprint
+}
+
+Sprint::Sprint(Tarefa * cabeca, Tarefa * cauda){
+  this->cabeca = cabeca;
+  this->cauda = cauda;
+  this->tempoPassado=0;//tempo passado em dias
+  this->quantidade=0;//quantidade de tarefas na sprint
+}
+
+Sprint::~Sprint(){}
+
 void Sprint::setCabeca(Tarefa * h){
   this->cabeca = h;
 }
