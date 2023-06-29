@@ -40,10 +40,17 @@ void Sprint::setQuantidade(int quantidade){
 int Sprint::getQuantidade(){
   return this->quantidade;
 }
-int Sprint::gerarRelatorio(int tempo){
-  
-} //gerar relatório pôs ‘n’ tempo passado
+//gerar relatório pôs ‘n’ tempo passado
+void Sprint::gerarRelatorio(){
+  Tarefa * atual = this->cabeca;
+    for(int i=0;i<this->quantidade;i++){
+      if(atual != NULL){
+        atual->imprimirTarefa();
+        atual = atual->getProximo(); 
+      }
+    }
+}
 
-int Sprint::gerarRelatorioDe(Dev * p){
+void Sprint::gerarRelatorioDe(Dev * p){
   
 }//gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação).
