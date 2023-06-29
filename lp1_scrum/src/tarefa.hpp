@@ -1,6 +1,8 @@
 #include "../include/tarefa.h"
+#include <iostream>
 
 //status de tarefa, não iniciada, em andamento, em teste, concluida
+using namespace std;
 
 Tarefa::Tarefa(){
   this->id = 0;//id começa em 1
@@ -71,4 +73,14 @@ void Tarefa::setResponsavel(Dev * responsavel){
 }
 Dev* Tarefa::getResponsavel(){
   return this->responsavel;
+}
+
+void Tarefa::imprimirTarefa(){
+    cout << "id: " << this->id << endl;
+    cout << "Pontos de esforço: " << this->PontosDeEsforco << endl;
+    cout << "Status: " << this->status << endl;
+    cout << "Instruções: " << this->instrucoes << endl;
+    if(this->responsavel != NULL) cout << "Responsavel: " << this->responsavel->getNome() << endl;
+    else cout << "Responsavel: NENHUM" << endl;
+  cout << "------------------------------------------------------------------" << endl;
 }

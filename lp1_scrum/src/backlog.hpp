@@ -1,4 +1,5 @@
 #include "../include/backlog.h"
+#include <iostream>
 
 Backlog::Backlog(){
   this->cauda = NULL;
@@ -39,13 +40,65 @@ int Backlog::getQuantidade(){
 }
 
 void Backlog::addTarefa(Tarefa * t){
-          
+  Tarefa * aux;
+  Tarefa * proximo;
+  //lista esta vazia
+  if(this->cabeca == NULL){
+    this->cabeca = t;
+    this->quantidade++;
+  }
+  //vai add sempre na segunda posição
+  else{
+    aux = this->cabeca->getProximo();
+    proximo = t;
+    this->cabeca->setProximo(proximo);
+    proximo->setProximo(aux);
+
+    this->quantidade++;
+  }
 }
 
 void Backlog::deletarTarefa(Tarefa * t){
-          
+  Tarefa * atual = this->cabeca;
+  Tarefa * proximo;
+  Tarefa * aux;
+  
+  for(int i=0;i<this->quantidade;i++){
+    if(atual != t){
+      //caso a tarefa seja o proximo
+      if(atual->getProximo() == t){
+        aux = atual->getProximo();
+        proximo = aux->getProximo();
+
+        atual->setProximo(proximo);
+        
+        this->quantidade--;
+        break;
+      }
+        
+      else{
+        atual = atual->getProximo();
+      }
+        
+    //caso o atual seja NULL
+    }else if(atual == NULL){
+      std::cout << "Tarefa não encontrada" << std::endl; break;
+      }
+    //caso o atual for a cabeça
+    else if(atual == cabeca){
+        cabeca = atual->getProximo();
+        this->quantidade--;
+        break;
+      }
+    }
 }
 
-Tarefa* Backlog::consultar(){
-        
+void Backlog::consultar(){
+Tarefa * atual = this->cabeca;
+    for(int i=0;i<this->quantidade;i++){
+      if(atual != NULL){
+        atual->imprimirTarefa();
+        atual = atual->getProximo(); 
+      }
+    }
 } //mostrar tarefas do backlog

@@ -21,5 +21,5 @@ class Backlog{
         int getQuantidade();
         void addTarefa(Tarefa * t);
         void deletarTarefa(Tarefa * t);
-        Tarefa* consultar(); //mostrar tarefas do backlog
+        void consultar(); //mostrar tarefas do backlog
 };

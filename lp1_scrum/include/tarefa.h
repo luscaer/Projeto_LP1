@@ -33,4 +33,5 @@ class Tarefa {
         string getInstrucoes();
         void setResponsavel(Dev * responsavel);
         Dev* getResponsavel();
+        void imprimirTarefa();
 };
