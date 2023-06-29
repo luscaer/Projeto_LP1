@@ -1,4 +1,4 @@
-#include "tarefa.h"
+#include "backlog.h"
 //#include "dev.h"
 
 class Sprint{
@@ -25,4 +25,6 @@ class Sprint{
         int getQuantidade();
         void gerarRelatorio(); //gerar relatório pôs ‘n’ tempo passado
         void gerarRelatorioDe(Dev * p);//gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação).
+        void addTarefa(Tarefa *t);
+        void deletarTarefa(Tarefa *t);
 };

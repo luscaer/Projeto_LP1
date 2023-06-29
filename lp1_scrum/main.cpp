@@ -1,11 +1,14 @@
 #include <iostream>
-#include "include/backlog.h"
+#include "include/sprint.h"
+//#include "include/sprint.h"
 
 int main() {
 
   //TESTANDO BACKLOG
   Backlog b;
+  Sprint s;
   Tarefa x, y, z;
+  Tarefa *aux;
 
   x = Tarefa(1, 23, "a", NULL, "INCIAL");
   //x.setProximo(&y);
@@ -18,8 +21,13 @@ int main() {
   b.addTarefa(&y);
   b.addTarefa(&z);
   b.consultar();
+
+  //buscar atraves do id
+  aux = b.getTarefa(2);
+
+  aux->imprimirTarefa();
   
-  cout << "deletando" << endl;
-  b.deletarTarefa(&y);
-  b.consultar();
+  //cout << "deletando" << endl;
+  //b.deletarTarefa(&y);
+  //b.consultar();
 }

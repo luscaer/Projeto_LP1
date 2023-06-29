@@ -102,3 +102,22 @@ Tarefa * atual = this->cabeca;
       }
     }
 } //mostrar tarefas do backlog
+
+//pega uma tarefa atraves do id
+Tarefa * Backlog::getTarefa(int id){
+  
+Tarefa * atual = this->cabeca;
+
+  if(atual != NULL){
+    for(int i=0;i<this->quantidade;i++){
+      if(atual->getId()==id){
+        return atual; break;
+      }
+      else{
+        atual = atual->getProximo();
+      }
+    }
+  }else{
+    return NULL;
+  }
+}

@@ -1,4 +1,5 @@
 #include "../include/sprint.h"
+#include <iostream>
 
 Sprint::Sprint(){
   this->cabeca = NULL;
@@ -40,6 +41,9 @@ void Sprint::setQuantidade(int quantidade){
 int Sprint::getQuantidade(){
   return this->quantidade;
 }
+
+
+
 //gerar relatório pôs ‘n’ tempo passado
 void Sprint::gerarRelatorio(){
   Tarefa * atual = this->cabeca;
@@ -54,3 +58,61 @@ void Sprint::gerarRelatorio(){
 void Sprint::gerarRelatorioDe(Dev * p){
   
 }//gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação).
+
+
+//SPRINT SO ADICIONA TAREFA DO BACKLOG AJUSTAR ISSO NA MAIN
+void Sprint::addTarefa(Tarefa * t){
+  Tarefa * aux;
+  Tarefa * proximo;
+  //lista esta vazia
+  if(this->cabeca == NULL){
+    this->cabeca = t;
+    this->quantidade++;
+  }
+  //vai add sempre na segunda posição
+  else{
+    aux = this->cabeca->getProximo();
+    proximo = t;
+    this->cabeca->setProximo(proximo);
+    proximo->setProximo(aux);
+
+    this->quantidade++;
+  }
+}
+
+
+void Sprint::deletarTarefa(Tarefa * t){
+  Tarefa * atual = this->cabeca;
+  Tarefa * proximo;
+  Tarefa * aux;
+  
+  for(int i=0;i<this->quantidade;i++){
+    if(atual != t){
+      //caso a tarefa seja o proximo
+      if(atual->getProximo() == t){
+        aux = atual->getProximo();
+        proximo = aux->getProximo();
+
+        atual->setProximo(proximo);
+        
+        this->quantidade--;
+        break;
+      }
+        
+      else{
+        atual = atual->getProximo();
+      }
+        
+    //caso o atual seja NULL
+    }else if(atual == NULL){
+      std::cout << "Tarefa não encontrada" << std::endl; break;
+      }
+    //caso o atual for a cabeça
+    else if(atual == cabeca){
+        cabeca = atual->getProximo();
+        this->quantidade--;
+        break;
+      }
+    }
+}
+
