@@ -11,6 +11,7 @@ class Pessoa {
     public:
         //construtores e destrutores
         Pessoa();
+        Pessoa(string nome);
         Pessoa(string nome, string funcao);
         Pessoa(Pessoa* proximo, string nome, string funcao);
         ~Pessoa();
