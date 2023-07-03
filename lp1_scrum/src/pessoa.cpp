@@ -3,13 +3,25 @@
 Pessoa::Pessoa(){
   this->nome = "";
   this->funcao = "";
-  this->proximo = NULL;
+  this->proximo = nullptr;
+}
+
+Pessoa::Pessoa(std::string nome){
+  this->nome = nome;
+  this->funcao = "";
+  this->proximo = nullptr;
 }
 
 Pessoa::Pessoa(string nome, string funcao){
   this->nome = nome;
   this->funcao = funcao;
-  this->proximo = NULL; 
+  this->proximo = nullptr; 
+}
+
+Pessoa::Pessoa(string nome, Pessoa* proximo){
+  this->nome = nome;
+  this->funcao = "";
+  this->proximo = proximo; 
 }
 
 Pessoa::Pessoa(Pessoa *proximo, string nome, string funcao){

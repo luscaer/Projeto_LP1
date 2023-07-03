@@ -3,7 +3,6 @@
 
 // Construtores
 ScrumMaster::ScrumMaster() {}
-
 ScrumMaster::ScrumMaster(string nome) : Pessoa(nome, "Scrum Master") {}
 
 // Destrutor

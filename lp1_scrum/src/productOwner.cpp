@@ -3,7 +3,6 @@
 
 // Construtores
 ProductOwner::ProductOwner() : Pessoa() {}
-
 ProductOwner::ProductOwner(string nome) : Pessoa(nome, "Product Owner") {}
 
 // Destrutor
