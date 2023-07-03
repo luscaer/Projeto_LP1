@@ -1,11 +1,10 @@
-#include <iostream>
 #include "../include/productOwner.hpp"
 #include "../include/pessoa.hpp"
 
 // Construtores
 ProductOwner::ProductOwner() : Pessoa() {}
 
-ProductOwner::ProductOwner(string nome) : Pessoa(nome) {}
+ProductOwner::ProductOwner(string nome) : Pessoa(nome, "Product Owner") {}
 
 // Destrutor
 ProductOwner::~ProductOwner() {}
