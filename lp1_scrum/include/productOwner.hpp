@@ -1,5 +1,5 @@
 //#include "pessoa.h"
-#include "tarefa.h"
+#include "tarefa.hpp"
 
 class ProductOwner : public Pessoa {
     public:

@@ -1,4 +1,4 @@
-#include "../include/tarefa.h"
+#include "../include/tarefa.hpp"
 #include <iostream>
 
 //status de tarefa, não iniciada, em andamento, em teste, concluida

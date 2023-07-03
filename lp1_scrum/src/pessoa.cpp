@@ -1,4 +1,4 @@
-#include "../include/pessoa.h"
+#include "../include/pessoa.hpp"
 
 Pessoa::Pessoa(){
   this->nome = "";

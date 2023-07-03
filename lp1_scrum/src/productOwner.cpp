@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../include/productOwner.h"
-#include "../include/pessoa.h"
+#include "../include/productOwner.hpp"
+#include "../include/pessoa.hpp"
 
 // Construtores
 ProductOwner::ProductOwner() : Pessoa() {}

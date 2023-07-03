@@ -1,4 +1,4 @@
-#include "../include/sprint.h"
+#include "../include/sprint.hpp"
 #include <iostream>
 
 Sprint::Sprint(){

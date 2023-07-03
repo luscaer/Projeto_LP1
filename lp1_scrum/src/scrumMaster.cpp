@@ -1,4 +1,4 @@
-#include "../include/scrumMaster.h"
+#include "../include/scrumMaster.hpp"
 
 void ScrumMaster::atribuirTarefa(Tarefa * t){
   

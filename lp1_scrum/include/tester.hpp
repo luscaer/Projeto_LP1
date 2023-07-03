@@ -1,6 +1,6 @@
 //#include "pessoa.h"
 //#include "dev.h"
-#include "tarefa.h"
+#include "tarefa.hpp"
 
 class Tester : public Pessoa {
     public:
