@@ -1,40 +1,45 @@
-PROG = SCRUM
-CC = g++
-CPPFLAGS = -Wall -ansi -pedantic -g -O0 -std=c++11 -Iinclude
-OBJS = main.o backlog.o dev.o pessoa.o productOwner.o scrumMaster.o sprint.o tarefa.o tester.o
+# Variáveis
+CXX = g++
+CXXFLAGS = -Wall -Wextra
+SRCDIR = src
+BUILDDIR = build
+BINDIR = bin
+TESTDIR = tests
+DOCDIR = docs
 
-all:
-	$(CC) $(CPPFLAGS) -o $(PROG) $(OBJS)
+# Alvos
+all: $(BINDIR)/meu_programa
 
-main.o:
-	$(CC) $(CPPFLAGS) -c main.cpp -o main.o
+# Regra para compilar o programa principal
+$(BINDIR)/meu_programa: $(SRCDIR)/main.cpp $(BUILDDIR)/backlog.o $(BUILDDIR)/dev.o $(BUILDDIR)/pessoa.o $(BUILDDIR)/productOwner.o $(BUILDDIR)/scrumMaster.o $(BUILDDIR)/sprint.o $(BUILDDIR)/tarefa.o $(BUILDDIR)/tester.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-backlog.o : include/backlog.h
-	$(CC) $(CPPFLAGS) -c backlog.cpp -o backlog.o
+# Regras para compilar os arquivos de código-fonte
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-dev.o : include/dev.h
-	$(CC) $(CPPFLAGS) -c dev.cpp -o dev.o
+# Regras para compilar os arquivos de teste
+$(TESTDIR)/%Test: $(TESTDIR)/%Test.cpp $(BUILDDIR)/%.o
+	$(CXX) $(CXXFLAGS) -o $(BINDIR)/$@ $^
 
-pessoa.o : include/pessoa.h
-	$(CC) $(CPPFLAGS) -c pessoa.cpp -o pessoa.o
+# Regra para gerar a documentação usando Doxygen
+doc:
+	doxygen Doxyfile
 
-productOwner.o : include/productOwner.h
-	$(CC) $(CPPFLAGS) -c productOwner.cpp -o productOwner.o
-
-scrumMaster.o : include/scrumMaster.h
-	$(CC) $(CPPFLAGS) -c scrumMaster.cpp -o scrumMaster.o
-
-sprint.o : include/sprint.h
-	$(CC) $(CPPFLAGS) -c sprint.cpp -o sprint.o
-
-tarefa.o : include/tarefa.h
-	$(CC) $(CPPFLAGS) -c tarefa.cpp -o tarefa.o
-
-tester.o : include/tester.h
-	$(CC) $(CPPFLAGS) -c tester.cpp -o tester.o
-
-run:
-	./$(PROG)
-
+# Regra para limpar os arquivos gerados durante a compilação
 clean:
-	rm -r -f core $(PROG) $(OBJS)
+	rm -rf $(BINDIR)/*
+	rm -rf $(BUILDDIR)/*
+	rm -rf $(DOCDIR)/*
+
+# Regra para limpar os arquivos gerados durante a compilação e excluir os executáveis de teste
+clean-all: clean
+	rm -rf $(TESTDIR)/*Test
+
+# Regra para rodar todos os testes unitários
+test: $(BINDIR)/backlogTest $(BINDIR)/devTest $(BINDIR)/pessoaTest $(BINDIR)/productOwnerTest $(BINDIR)/scrumMasterTest $(BINDIR)/sprintTest $(BINDIR)/tarefaTest $(BINDIR)/testerTest
+	@for test in $^; do \
+		echo "Running $$test..."; \
+		./$$test; \
+		echo; \
+	done
