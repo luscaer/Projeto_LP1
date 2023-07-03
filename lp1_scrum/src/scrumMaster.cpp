@@ -1,9 +1,15 @@
 #include "../include/scrumMaster.hpp"
+#include "../include/pessoa.hpp"
 
-void ScrumMaster::atribuirTarefa(Tarefa * t){
-  
-}
+// Construtores
+ScrumMaster::ScrumMaster() {}
 
-void ScrumMaster::atribuirTarefaAPessoa(Tarefa * t){
-  
-}
+ScrumMaster::ScrumMaster(string nome) : Pessoa(nome, "Scrum Master") {}
+
+// Destrutor
+ScrumMaster::~ScrumMaster() {}
+
+//Atribuições de tarefas
+void ScrumMaster::atribuirTarefa(Tarefa * t) {}
+
+void ScrumMaster::atribuirTarefaAPessoa(Tarefa * t, Pessoa * p) {}

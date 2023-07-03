@@ -10,5 +10,5 @@ class ScrumMaster : public Pessoa {
 
         //funções
         void atribuirTarefa(Tarefa * t);
-        void atribuirTarefaAPessoa(Tarefa * t); 
+        void atribuirTarefaAPessoa(Tarefa * t, Pessoa * p); 
 };
