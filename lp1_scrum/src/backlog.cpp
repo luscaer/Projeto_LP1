@@ -51,7 +51,6 @@ int Backlog::getQuantidade(){
 
 void Backlog::addTarefa(Tarefa * t){
   Tarefa * aux;
-  Tarefa * proximo;
   //lista esta vazia
   if(this->cabeca == nullptr){
     aux = t;
@@ -64,14 +63,15 @@ void Backlog::addTarefa(Tarefa * t){
   }
   //vai add sempre na segunda posição
   else{
-    aux = this->cabeca->getProximo();
-
+    Tarefa * proximo;
     proximo = t;
     proximo->setAnterior(cabeca);
-    this->cabeca->setProximo(proximo);
+
+    aux = this->cabeca->getProximo();
     proximo->setProximo(aux);
     aux->setAnterior(proximo);
-
+    
+    this->cabeca->setProximo(proximo);
     this->quantidade++;
   }
 }
