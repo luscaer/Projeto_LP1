@@ -126,7 +126,7 @@ Tarefa * Backlog::getTarefa(int id){
   
 Tarefa * atual = this->cabeca;
 
-  if(atual != NULL){
+  if(atual != nullptr){
     for(int i=0;i<this->quantidade;i++){
       if(atual->getId()==id){
         return atual; break;
@@ -136,6 +136,6 @@ Tarefa * atual = this->cabeca;
       }
     }
   }else{
-    return NULL;
+    return nullptr;
   }
 }
