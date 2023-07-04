@@ -9,7 +9,6 @@ private:
 public:
   // construtores e destrutores
   Backlog();
-  Backlog(Tarefa *cabeca, Tarefa *cauda, int quantidade);
   ~Backlog();
 
   // funções

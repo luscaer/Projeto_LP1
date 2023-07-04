@@ -2,18 +2,28 @@
 #include <iostream>
 
 Backlog::Backlog(){
-  this->cauda = NULL;
-  this->cabeca = NULL;
+  this->cauda = new Tarefa();
+  this->cabeca = new Tarefa();
+
+  this->cabeca->setProximo(cauda);
+  this->cabeca->setAnterior(nullptr);
+
+  this->cauda->setProximo(nullptr);
+  this->cauda->setAnterior(cabeca);
+
   this->quantidade = 0;
 }
 
-Backlog::Backlog(Tarefa * cabeca, Tarefa * cauda, int quantidade){
-  this->cauda = cauda;
-  this->cabeca = cabeca;
-  this->quantidade = 0;
-}
+Backlog::~Backlog(){
+  Tarefa* aux = this->cabeca;
 
-Backlog::~Backlog(){}
+  while(aux != nullptr)
+  {
+    Tarefa* proximo = aux->getProximo();
+    delete aux;
+    aux = proximo;
+  }
+}
 
 void Backlog::setCabeca(Tarefa * h){
   this->cabeca = h;
@@ -45,6 +55,7 @@ void Backlog::addTarefa(Tarefa * t){
   //lista esta vazia
   if(this->cabeca == NULL){
     this->cabeca = t;
+    t->setProximo(cauda);
     this->quantidade++;
   }
   //vai add sempre na segunda posição

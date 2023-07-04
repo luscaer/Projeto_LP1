@@ -6,6 +6,7 @@ using namespace std;
 class Tarefa {
     private:
         Tarefa * proximo;
+        Tarefa * anterior;
         int id;
         int PontosDeEsforco;
         string status;
@@ -23,6 +24,8 @@ class Tarefa {
         //funções
         void setProximo(Tarefa * proximo);
         Tarefa* getProximo();
+        void setAnterior(Tarefa * proximo);
+        Tarefa* getAnterior();
         void setId(int id);
         int getId();
         void setPontosDeEsforco(int PDE); 

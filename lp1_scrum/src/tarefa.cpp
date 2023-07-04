@@ -44,6 +44,12 @@ void Tarefa::setProximo(Tarefa * proximo){
 Tarefa* Tarefa::getProximo(){
   return this->proximo;
 }
+void Tarefa::setAnterior(Tarefa * anterior){
+  this->anterior = anterior;
+}
+Tarefa* Tarefa::getAnterior(){
+  return this->anterior;
+}
 void Tarefa::setId(int id){
   this->id = id;
 }
