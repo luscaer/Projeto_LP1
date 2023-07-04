@@ -50,9 +50,9 @@ int Backlog::getQuantidade(){
 }
 
 void Backlog::addTarefa(Tarefa * t){
-  Tarefa * aux;
+  Tarefa * aux = new Tarefa();
   //lista esta vazia
-  if(this->cabeca == nullptr){
+  if(this->cabeca->getId() == 0){
     aux = t;
 
     aux->setProximo(cabeca->getProximo());
@@ -63,7 +63,7 @@ void Backlog::addTarefa(Tarefa * t){
   }
   //vai add sempre na segunda posição
   else{
-    Tarefa * proximo;
+    Tarefa * proximo = new Tarefa();
     proximo = t;
     proximo->setAnterior(cabeca);
 
@@ -112,19 +112,18 @@ void Backlog::deletarTarefa(Tarefa * t){
 }
 
 void Backlog::consultar(){
-Tarefa * atual = this->cabeca;
-    for(int i=0;i<this->quantidade;i++){
-      if(atual != nullptr){
-        atual->imprimirTarefa();
-        atual = atual->getProximo(); 
-      }
+  Tarefa * atual = this->cabeca;
+  for(int i=0;i<this->quantidade;i++){
+    if(atual != nullptr){
+      atual->imprimirTarefa();
+      atual = atual->getProximo(); 
     }
+  }
 } //mostrar tarefas do backlog
 
 //pega uma tarefa atraves do id
 Tarefa * Backlog::getTarefa(int id){
-  
-Tarefa * atual = this->cabeca;
+  Tarefa * atual = this->cabeca;
 
   if(atual != nullptr){
     for(int i=0;i<this->quantidade;i++){
