@@ -99,7 +99,7 @@ void Backlog::deletarTarefa(Tarefa * t){
       }
         
     //caso o atual seja NULL
-    }else if(atual == NULL){
+    }else if(atual == nullptr){
       std::cout << "Tarefa não encontrada" << std::endl; break;
       }
     //caso o atual for a cabeça
@@ -114,7 +114,7 @@ void Backlog::deletarTarefa(Tarefa * t){
 void Backlog::consultar(){
 Tarefa * atual = this->cabeca;
     for(int i=0;i<this->quantidade;i++){
-      if(atual != NULL){
+      if(atual != nullptr){
         atual->imprimirTarefa();
         atual = atual->getProximo(); 
       }
