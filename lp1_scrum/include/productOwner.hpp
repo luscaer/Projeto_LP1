@@ -1,4 +1,6 @@
-//#include "pessoa.h"
+#ifndef PRODUCTOWNER_HPP
+#define PRODUCTOWNER_HPP
+
 #include "tarefa.hpp"
 
 class ProductOwner : public Pessoa {
@@ -10,3 +12,5 @@ class ProductOwner : public Pessoa {
 
         void cadastrarTarefa(Tarefa * t);
 };
+
+#endif

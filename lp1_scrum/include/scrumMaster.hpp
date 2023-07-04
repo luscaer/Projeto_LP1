@@ -1,4 +1,6 @@
-//#include "pessoa.h"
+#ifndef SCRUMMASTER_HPP
+#define SCRUMMASTER_HPP
+
 #include "tarefa.hpp"
 
 class ScrumMaster : public Pessoa {
@@ -12,3 +14,5 @@ class ScrumMaster : public Pessoa {
         void atribuirTarefa(Tarefa * t);
         void atribuirTarefaAPessoa(Tarefa * t, Pessoa * p); 
 };
+
+#endif

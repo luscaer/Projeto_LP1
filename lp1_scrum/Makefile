@@ -1,6 +1,7 @@
 # Variáveis
 CXX = g++
 CXXFLAGS = -Wall -Wextra
+MAINDIR = main
 SRCDIR = src
 BUILDDIR = build
 BINDIR = bin
@@ -11,7 +12,7 @@ DOCDIR = docs
 all: $(BINDIR)/meu_programa
 
 # Regra para compilar o programa principal
-$(BINDIR)/meu_programa: $(SRCDIR)/main.cpp $(BUILDDIR)/backlog.o $(BUILDDIR)/dev.o $(BUILDDIR)/pessoa.o $(BUILDDIR)/productOwner.o $(BUILDDIR)/scrumMaster.o $(BUILDDIR)/sprint.o $(BUILDDIR)/tarefa.o $(BUILDDIR)/tester.o
+$(BINDIR)/meu_programa: $(MAINDIR)/main.cpp $(BUILDDIR)/backlog.o $(BUILDDIR)/dev.o $(BUILDDIR)/pessoa.o $(BUILDDIR)/productOwner.o $(BUILDDIR)/scrumMaster.o $(BUILDDIR)/sprint.o $(BUILDDIR)/tarefa.o $(BUILDDIR)/tester.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 # Regras para compilar os arquivos de código-fonte

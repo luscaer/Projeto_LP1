@@ -1,3 +1,6 @@
+#ifndef DEV_HPP
+#define DEV_HPP
+
 #include "pessoa.hpp"
 //#include "tarefa.h"
 #include <string>
@@ -16,3 +19,5 @@ class Dev : public Pessoa {
         void RealizarTarefas(string status);
         void RealizarTarefaEspecifica(string status, int idTarefa);
 };
+
+#endif

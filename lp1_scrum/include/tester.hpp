@@ -1,5 +1,6 @@
-//#include "pessoa.h"
-//#include "dev.h"
+#ifndef TESTER_HPP
+#define TESTER_HPP
+
 #include "tarefa.hpp"
 
 class Tester : public Pessoa {
@@ -16,3 +17,5 @@ class Tester : public Pessoa {
         void validarTarefa(Tarefa * t);
         void declinarTarefa(Tarefa * t);
 };
+
+#endif

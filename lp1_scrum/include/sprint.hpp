@@ -1,3 +1,7 @@
+#ifndef SPRINT_HPP
+#define SPRINT_HPP
+
+#include "tarefa.hpp"
 #include "backlog.hpp"
 //#include "dev.h"
 
@@ -28,3 +32,5 @@ class Sprint{
         void addTarefa(Tarefa *t);
         void deletarTarefa(Tarefa *t);
 };
+
+#endif

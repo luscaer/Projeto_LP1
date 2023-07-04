@@ -1,3 +1,6 @@
+#ifndef TAREFA_HPP
+#define TAREFA_HPP
+
 #include <string>
 #include "dev.hpp"
 
@@ -38,3 +41,5 @@ class Tarefa {
         Dev* getResponsavel();
         void imprimirTarefa();
 };
+
+#endif

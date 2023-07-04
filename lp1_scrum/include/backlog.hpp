@@ -1,3 +1,6 @@
+#ifndef TAREFA_HPP
+#define TAREFA_HPP
+
 #include "tarefa.hpp"
 
 class Backlog {
@@ -23,3 +26,5 @@ public:
   void consultar(); // mostrar tarefas do backlog
   Tarefa * getTarefa(int id);
 };
+
+#endif

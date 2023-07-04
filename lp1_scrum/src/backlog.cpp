@@ -135,7 +135,7 @@ Tarefa * atual = this->cabeca;
         atual = atual->getProximo();
       }
     }
-  }else{
-    return nullptr;
   }
+
+  return nullptr;
 }
