@@ -1,5 +1,5 @@
 #include <iostream>
-#include "include/sprint.hpp"
+#include "../include/sprint.hpp"
 //#include "include/sprint.h"
 
 int main() {
