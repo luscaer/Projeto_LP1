@@ -82,11 +82,16 @@ Dev* Tarefa::getResponsavel(){
 }
 
 void Tarefa::imprimirTarefa(){
+    if (this == nullptr) {
+    cout << "Tarefa inexistente." << endl;
+    return;
+    }
+
     cout << "id: " << this->id << endl;
     cout << "Pontos de esforço: " << this->PontosDeEsforco << endl;
     cout << "Status: " << this->status << endl;
     cout << "Instruções: " << this->instrucoes << endl;
     if(this->responsavel != NULL) cout << "Responsavel: " << this->responsavel->getNome() << endl;
     else cout << "Responsavel: NENHUM" << endl;
-  cout << "------------------------------------------------------------------" << endl;
+    cout << "------------------------------------------------------------------" << endl;
 }
