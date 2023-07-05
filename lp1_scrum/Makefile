@@ -1,46 +1,51 @@
-# Variáveis
-CXX = g++
-CXXFLAGS = -Wall -Wextra
-MAINDIR = main
-SRCDIR = src
-BUILDDIR = build
-BINDIR = bin
-TESTDIR = tests
-DOCDIR = docs
+# Configurações do compilador
+CC = g++
+CFLAGS = -Wall -Wextra -pedantic -std=c++11
 
-# Alvos
-all: $(BINDIR)/meu_programa
+# Diretórios
+BIN_DIR = bin
+BUILD_DIR = build
+CODE_DIR = codigos_auxiliares
+DATA_DIR = data
+DOCS_DIR = docs
+INCLUDE_DIR = include
+MAIN_DIR = main
+SRC_DIR = src
+TEST_DIR = tests
 
-# Regra para compilar o programa principal
-$(BINDIR)/meu_programa: $(MAINDIR)/main.cpp $(BUILDDIR)/backlog.o $(BUILDDIR)/dev.o $(BUILDDIR)/pessoa.o $(BUILDDIR)/productOwner.o $(BUILDDIR)/scrumMaster.o $(BUILDDIR)/sprint.o $(BUILDDIR)/tarefa.o $(BUILDDIR)/tester.o
-	$(CXX) $(CXXFLAGS) -Iinclude -o $@ $^
+# Arquivos fonte e objeto
+MAIN_SRC = $(MAIN_DIR)/main.cpp
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
 
-# Regras para compilar os arquivos de código-fonte
-$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+# Nome do executável
+EXECUTABLE = $(BIN_DIR)/lp1_scrum
 
-# Regras para compilar os arquivos de teste
-$(TESTDIR)/%Test: $(TESTDIR)/%Test.cpp $(BUILDDIR)/%.o
-	$(CXX) $(CXXFLAGS) -o $(BINDIR)/$@ $^
+# Comandos
+RM = rm -rf
 
-# Regra para gerar a documentação usando Doxygen
-doc:
-	doxygen Doxyfile
+# Regra padrão
+all: $(EXECUTABLE)
 
-# Regra para limpar os arquivos gerados durante a compilação
+# Regra para o executável
+$(EXECUTABLE): $(OBJ_FILES) $(MAIN_SRC)
+	$(CC) $(CFLAGS) $^ -o $@
+
+# Regra para os objetos
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+
+# Regras para os testes
+TEST_FILES = $(wildcard $(TEST_DIR)/*.cpp)
+TEST_EXECS = $(patsubst $(TEST_DIR)/%.cpp,$(BIN_DIR)/%,$(TEST_FILES))
+
+$(BIN_DIR)/%: $(TEST_DIR)/%.cpp $(OBJ_FILES)
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $^ -o $@
+
+tests: $(TEST_EXECS)
+
+# Regra para limpar os arquivos gerados
 clean:
-	rm -rf $(BINDIR)/*
-	rm -rf $(BUILDDIR)/*
-	rm -rf $(DOCDIR)/*
+	$(RM) $(BIN_DIR) $(BUILD_DIR)
 
-# Regra para limpar os arquivos gerados durante a compilação e excluir os executáveis de teste
-clean-all: clean
-	rm -rf $(TESTDIR)/*Test
-
-# Regra para rodar todos os testes unitários
-test: $(BINDIR)/backlogTest $(BINDIR)/devTest $(BINDIR)/pessoaTest $(BINDIR)/productOwnerTest $(BINDIR)/scrumMasterTest $(BINDIR)/sprintTest $(BINDIR)/tarefaTest $(BINDIR)/testerTest
-	@for test in $^; do \
-		echo "Running $$test..."; \
-		./$$test; \
-		echo; \
-	done
+.PHONY: all tests clean
