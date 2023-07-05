@@ -21,8 +21,8 @@ public:
   Tarefa *getCauda();
   void setQuantidade(int quantidade);
   int getQuantidade();
-  void addTarefa(Tarefa *t);
-  void deletarTarefa(Tarefa *t);
+  bool addTarefa(Tarefa *t);
+  bool deletarTarefa(Tarefa *t);
   void consultar(); // mostrar tarefas do backlog
   Tarefa * getTarefa(int id);
 };
