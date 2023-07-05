@@ -11,7 +11,7 @@ int main() {
 
     ProductOwner P = ProductOwner(nome);
 
-    std::cout << "Olá " << nome << "Seja bem vindo ao gerenciador de BackLog!" << std::endl;
+    std::cout << "Olá " << nome << ". Seja bem vindo ao gerenciador de BackLog!" << std::endl;
     std::cout << "Deseja construir um BackLog? [Y/N]" << std::endl;
 
     char comando;
@@ -39,10 +39,11 @@ int main() {
         std::cout << "Digite as instruções da tarefa: ";
         std::getline(std::cin, instrucoes);
         std::cout << "Digite o Status da tarefa: ";
-        std::cin >> status;
+        std::getline(std::cin, status);
 
-        Tarefa t = Tarefa(id, PontosDeEsforco, instrucoes, nullptr, status);
-        P.cadastrarTarefa(b, &t);
+        Tarefa * t = new Tarefa(id, PontosDeEsforco, instrucoes, nullptr, status);
+        //P.cadastrarTarefa(b, &t); Deu erro, pois não está achando a declaração da função.
+        b.addTarefa(t);
 
         std::cout << "Deseja inserir mais uma tarefa no BackLog? [Y/N]" << std::endl;
         std::cin >> comando;
@@ -66,7 +67,8 @@ int main() {
             std::cout << "Não foi possível encontrar a tarefa com o ID fornecido." << std::endl;
         }
 
-        P.deletarTarefa(b, t);
+        //P.deletarTarefa(b, t); Deu erro, pois não está achando a declaração da função.
+        b.deletarTarefa(t);
 
         std::cout << "Deseja remover mais uma tarefa do BackLog? [Y/N]" << std::endl;
         std::cin >> comando;
