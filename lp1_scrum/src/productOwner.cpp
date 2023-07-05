@@ -8,8 +8,13 @@ ProductOwner::ProductOwner(string nome) : Pessoa(nome, "Product Owner") {}
 // Destrutor
 ProductOwner::~ProductOwner() {}
 
-//Cadastrar tarefa
-void cadastrarTarefa(Tarefa * t)
+//Cadastrar ou Deletar tarefa
+void cadastrarTarefa(Backlog b, Tarefa * t)
 {
-    //Para fazer
+    b.addTarefa(t);
+}
+
+void deletarTarefa(Backlog b, Tarefa * t)
+{
+    b.deletarTarefa(t);
 }

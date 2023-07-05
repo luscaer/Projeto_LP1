@@ -92,8 +92,9 @@ bool Backlog::deletarTarefa(Tarefa * t){
       proximo->setAnterior(atual->getAnterior());
       anterior->setProximo(atual->getProximo());
 
-      //O problema da função está aqui:
+      /*O problema da função está aqui:
       delete atual;
+      */
 
       this->quantidade--;
       return true;

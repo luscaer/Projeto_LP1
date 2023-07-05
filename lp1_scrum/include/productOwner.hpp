@@ -2,6 +2,7 @@
 #define PRODUCTOWNER_HPP
 
 #include "tarefa.hpp"
+#include "backlog.hpp"
 
 class ProductOwner : public Pessoa {
     public:
@@ -10,7 +11,8 @@ class ProductOwner : public Pessoa {
         ProductOwner(string nome);
         ~ProductOwner();
 
-        void cadastrarTarefa(Tarefa * t);
+        void cadastrarTarefa(Backlog b, Tarefa * t);
+        void deletarTarefa(Backlog b, Tarefa * t);
 };
 
 #endif
