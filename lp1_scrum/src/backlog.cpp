@@ -2,8 +2,8 @@
 #include <iostream>
 
 Backlog::Backlog(){
-  this->cauda = new Tarefa("NÃO DEVE SER ACESSADO");
-  this->cabeca = new Tarefa("NÃO DEVE SER ACESSADO");
+  this->cauda = new Tarefa("CAUDA - NÃO DEVE SER ACESSADO");
+  this->cabeca = new Tarefa("CABEÇA - NÃO DEVE SER ACESSADO");
 
   this->cabeca->setProximo(cauda);
   this->cabeca->setAnterior(nullptr);
@@ -51,12 +51,14 @@ int Backlog::getQuantidade(){
 
 bool Backlog::addTarefa(Tarefa * t){
   Tarefa * aux = new Tarefa();
-  //lista esta vazia
+  //Lista vazia, inserir após a cabeça.
   if(this->quantidade == 0){
     aux = t;
 
-    aux->setProximo(cabeca->getProximo());
-    aux->setAnterior(cabeca->getAnterior());
+    aux->setProximo(this->cabeca->getProximo());
+    aux->setAnterior(this->cabeca);
+    this->cabeca->setProximo(aux);
+    this->cauda->setAnterior(aux);
 
     this->quantidade++;
     return true;
@@ -120,13 +122,16 @@ bool Backlog::deletarTarefa(Tarefa * t){
 
 //mostrar tarefas do backlog
 void Backlog::consultar(){
+  if (this->quantidade == 0) {
+    std::cout << "Backlog vazio." << std::endl;
+    return;
+  }
+
   Tarefa * atual = this->cabeca->getProximo();
 
-  for(int i=0;i<this->quantidade;i++){
-    if(atual != nullptr){
-      atual->imprimirTarefa();
-      atual = atual->getProximo(); 
-    }
+  while (atual != this->cauda) {
+    atual->imprimirTarefa();
+    atual = atual->getProximo();
   }
 }
 
@@ -134,7 +139,7 @@ void Backlog::consultar(){
 Tarefa * Backlog::getTarefa(int id){
   Tarefa * atual = this->cabeca->getProximo();
 
-  if(atual != nullptr){
+  if(atual != this->cauda){
     for(int i=0;i<this->quantidade;i++){
       if(atual->getId()==id){
         return atual;
