@@ -19,6 +19,7 @@ class Tarefa {
     public:
         //construtores e destrutores
         Tarefa();
+        Tarefa(string instrucoes);
         Tarefa(int id, int PontosDeEsforco, string instrucoes);
         Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel);
         Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel, string status);

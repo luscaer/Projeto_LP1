@@ -12,6 +12,14 @@ Tarefa::Tarefa(){
   this->status="";
 }
 
+Tarefa::Tarefa(string instrucoes){
+  this->id = 0;//id começa em 1
+  this->PontosDeEsforco = 0; 
+  this->instrucoes=instrucoes;
+  this->responsavel= NULL;
+  this->status="";
+}
+
 Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes){
   this->id = id;//id começa em 1
   this->PontosDeEsforco = PontosDeEsforco; 

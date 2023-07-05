@@ -2,8 +2,8 @@
 #include <iostream>
 
 Backlog::Backlog(){
-  this->cauda = new Tarefa();
-  this->cabeca = new Tarefa();
+  this->cauda = new Tarefa("NÃO DEVE SER ACESSADO");
+  this->cabeca = new Tarefa("NÃO DEVE SER ACESSADO");
 
   this->cabeca->setProximo(cauda);
   this->cabeca->setAnterior(nullptr);
@@ -52,16 +52,15 @@ int Backlog::getQuantidade(){
 void Backlog::addTarefa(Tarefa * t){
   Tarefa * aux = new Tarefa();
   //lista esta vazia
-  if(this->cabeca->getId() == 0){
+  if(this->quantidade == 0){
     aux = t;
 
     aux->setProximo(cabeca->getProximo());
     aux->setAnterior(cabeca->getAnterior());
 
-    this->cabeca = aux;
     this->quantidade++;
   }
-  //vai add sempre na segunda posição
+  //Vai adicionar sempre na posição após a cabeça.
   else{
     Tarefa * proximo = new Tarefa();
     proximo = t;
