@@ -15,16 +15,20 @@ int main() {
   z = Tarefa(3, 33, "c", NULL, "EM ANDAMENTO");
   //z.setProximo(NULL);
 
+  std::cout << "Teste 1 - INSERIR TAREFAS" << std::endl;
+  std::cout << "------------------------------------------------------------------" << std::endl;
   b.addTarefa(&x);
   b.addTarefa(&y);
   b.addTarefa(&z);
   b.consultar();
 
-  //buscar atraves do id
+  std::cout << "Teste 2 - BUSCAR ATRAVÉS DO ID" << std::endl;
+  std::cout << "------------------------------------------------------------------" << std::endl;
   aux = b.getTarefa(2);
   aux->imprimirTarefa();
   
-  //Deletar tarefa
+  std::cout << "Teste 3 - DELETAR TAREFAS" << std::endl;
+  std::cout << "------------------------------------------------------------------" << std::endl;
   b.deletarTarefa(&y);
   b.consultar();
 

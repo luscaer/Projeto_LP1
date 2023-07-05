@@ -44,6 +44,9 @@ $(BIN_DIR)/%: $(TEST_DIR)/%.cpp $(OBJ_FILES)
 
 tests: $(TEST_EXECS)
 
+run:
+	$(EXECUTABLE)
+
 # Regra para limpar os arquivos gerados
 clean:
 	$(RM) $(BIN_DIR) $(BUILD_DIR)

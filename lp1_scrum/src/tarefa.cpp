@@ -44,7 +44,7 @@ Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel
   this->status = status;
 }
 
-Tarefa::~Tarefa(){}
+Tarefa::~Tarefa() {}
 
 void Tarefa::setProximo(Tarefa * proximo){
   this->proximo = proximo;

@@ -82,41 +82,27 @@ bool Backlog::addTarefa(Tarefa * t){
 bool Backlog::deletarTarefa(Tarefa * t){
   Tarefa * atual = this->cabeca->getProximo();
   Tarefa * proximo = new Tarefa();
-  Tarefa * aux = new Tarefa();
-  
-  for(int i = 0;i < this->quantidade; i++){
-    if(atual == nullptr){
-      std::cout << "Tarefa não encontrada" << std::endl;
-      return false;
-    }
-    else if(atual == t){
-      atual->getProximo()->setAnterior(atual->getAnterior());
-      atual->getAnterior()->setProximo(atual->getProximo());
+  Tarefa * anterior = new Tarefa();
+    
+  while(atual != this->cauda){
+    if(atual == t){
+      proximo = atual->getProximo();
+      anterior = atual->getAnterior();
 
+      proximo->setAnterior(atual->getAnterior());
+      anterior->setProximo(atual->getProximo());
+
+      //O problema da função está aqui:
       delete atual;
 
       this->quantidade--;
       return true;
     }
-    else if(atual != t){
-      //caso a tarefa seja o proximo
-      if(atual->getProximo() == t){
-        aux = atual->getProximo();
-        proximo = aux->getProximo();
 
-        atual->setProximo(proximo);
-        proximo->setAnterior(atual);
-        delete aux;
-        
-        this->quantidade--;
-        return true;
-      }
-      else{
-        atual = atual->getProximo();
-      }  
-    }
+    atual = atual->getProximo();
   }
 
+  std::cout << "Não foi possível deletar!" << std::endl;
   return false;
 }
 
