@@ -2,38 +2,26 @@
 #include <iostream>
 
 Sprint::Sprint(){
-  this->cabeca = NULL;
-  this->cauda = NULL;
-  this->tempoPassado=0;//tempo passado em dias
-  this->quantidade=0;//quantidade de tarefas na sprint
-}
+  this->cauda = new Tarefa("CAUDA - NÃO DEVE SER ACESSADO");
+  this->cabeca = new Tarefa("CABEÇA - NÃO DEVE SER ACESSADO");
 
-Sprint::Sprint(Tarefa * cabeca, Tarefa * cauda){
-  this->cabeca = cabeca;
-  this->cauda = cauda;
-  this->tempoPassado=0;//tempo passado em dias
-  this->quantidade=0;//quantidade de tarefas na sprint
+  this->cabeca->setProximo(cauda);
+  this->cabeca->setAnterior(nullptr);
+
+  this->cauda->setProximo(nullptr);
+  this->cauda->setAnterior(cabeca);
+
+  this->tempoDaSprint = 0; //Tempo máximo para sprint.
+  this->quantidade = 0; //Qauntidade de tarefas na sprint
 }
 
 Sprint::~Sprint(){}
 
-void Sprint::setCabeca(Tarefa * h){
-  this->cabeca = h;
-}
-Tarefa* Sprint::getCabeca(){
-  return this->cabeca;
-}
-void Sprint::setCauda(Tarefa * t){
-  this-> cauda = t;
-}
-Tarefa* Sprint::getCauda(){
-  return this->cauda;
-}
 void Sprint::setTempoPassado(int tempo){
-  this->tempoPassado=tempo;
+  this->tempoDaSprint = tempo;
 }
 int Sprint::getTempoPassado(){
-  return tempoPassado;
+  return tempoDaSprint;
 }
 void Sprint::setQuantidade(int quantidade){
   this->quantidade = quantidade;
@@ -42,77 +30,82 @@ int Sprint::getQuantidade(){
   return this->quantidade;
 }
 
-
-
-//gerar relatório pôs ‘n’ tempo passado
+//Gerar relatório.
 void Sprint::gerarRelatorio(){
-  Tarefa * atual = this->cabeca;
-    for(int i=0;i<this->quantidade;i++){
-      if(atual != NULL){
-        atual->imprimirTarefa();
-        atual = atual->getProximo(); 
-      }
-    }
+  if (this->quantidade == 0) {
+    std::cout << "Sprint vazia." << std::endl;
+    return;
+  }
+
+  Tarefa * atual = this->cabeca->getProximo();
+
+  while (atual != this->cauda) {
+    atual->imprimirTarefa();
+    atual = atual->getProximo();
+  }
 }
 
-void Sprint::gerarRelatorioDe(Dev * p){
+//Gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação). (Ordem alfabética?)
+void Sprint::gerarRelatorioDeDev(Dev * p){
   
-}//gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação).
+}
 
+bool Sprint::addTarefa(Backlog b, int id){
+  Tarefa * aux = new Tarefa();
+  //Lista vazia, inserir após a cabeça.
+  if(this->quantidade == 0){
+    aux = b.getTarefa(id);
 
-//SPRINT SO ADICIONA TAREFA DO BACKLOG AJUSTAR ISSO NA MAIN
-void Sprint::addTarefa(Tarefa * t){
-  Tarefa * aux;
-  Tarefa * proximo;
-  //lista esta vazia
-  if(this->cabeca == NULL){
-    this->cabeca = t;
+    aux->setProximo(this->cabeca->getProximo());
+    aux->setAnterior(this->cabeca);
+    this->cabeca->setProximo(aux);
+    this->cauda->setAnterior(aux);
+
     this->quantidade++;
+    return true;
   }
-  //vai add sempre na segunda posição
+  //Vai adicionar sempre na posição após a cabeça, para depois usar algum método de ordenação.
   else{
-    aux = this->cabeca->getProximo();
-    proximo = t;
-    this->cabeca->setProximo(proximo);
-    proximo->setProximo(aux);
+    Tarefa * proximo = b.getTarefa(id);
+    proximo->setAnterior(cabeca);
 
+    aux = this->cabeca->getProximo();
+    proximo->setProximo(aux);
+    aux->setAnterior(proximo);
+    
+    this->cabeca->setProximo(proximo);
     this->quantidade++;
+    return true;
   }
 }
 
+bool Sprint::deletarTarefa(Tarefa * t){
+  Tarefa * atual = this->cabeca->getProximo();
+  Tarefa * proximo = new Tarefa();
+  Tarefa * anterior = new Tarefa();
+    
+  while(atual != this->cauda){
+    if(atual == t){
+      proximo = atual->getProximo();
+      anterior = atual->getAnterior();
 
-void Sprint::deletarTarefa(Tarefa * t){
-  Tarefa * atual = this->cabeca;
-  Tarefa * proximo;
-  Tarefa * aux;
-  
-  for(int i=0;i<this->quantidade;i++){
-    if(atual != t){
-      //caso a tarefa seja o proximo
-      if(atual->getProximo() == t){
-        aux = atual->getProximo();
-        proximo = aux->getProximo();
+      proximo->setAnterior(atual->getAnterior());
+      anterior->setProximo(atual->getProximo());
 
-        atual->setProximo(proximo);
-        
-        this->quantidade--;
-        break;
-      }
-        
-      else{
-        atual = atual->getProximo();
-      }
-        
-    //caso o atual seja NULL
-    }else if(atual == NULL){
-      std::cout << "Tarefa não encontrada" << std::endl; break;
-      }
-    //caso o atual for a cabeça
-    else if(atual == cabeca){
-        cabeca = atual->getProximo();
-        this->quantidade--;
-        break;
-      }
+      /*O problema da função está aqui:
+      delete atual;
+      */
+
+      this->quantidade--;
+      return true;
     }
+
+    atual = atual->getProximo();
+  }
+
+  std::cout << "Não foi possível deletar!" << std::endl;
+  return false;
 }
 
+//bool Sprint::ordenarAlfabetico() {}
+//bool Sprint::ordenarPorPrioridade() {}

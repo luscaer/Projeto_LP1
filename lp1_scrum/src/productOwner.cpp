@@ -9,12 +9,12 @@ ProductOwner::ProductOwner(string nome) : Pessoa(nome, "Product Owner") {}
 ProductOwner::~ProductOwner() {}
 
 //Cadastrar ou Deletar tarefa
-void cadastrarTarefa(Backlog b, Tarefa * t)
+void ProductOwner::cadastrarTarefa(Backlog b, Tarefa * t)
 {
     b.addTarefa(t);
 }
 
-void deletarTarefa(Backlog b, Tarefa * t)
+void ProductOwner::deletarTarefa(Backlog b, Tarefa * t)
 {
     b.deletarTarefa(t);
 }

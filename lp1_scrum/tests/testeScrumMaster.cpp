@@ -1,4 +1,5 @@
 #include <iostream>
+#include "../include/scrumMaster.hpp"
 #include "../include/productOwner.hpp"
 #include "../include/backlog.hpp"
 

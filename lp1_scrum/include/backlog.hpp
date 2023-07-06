@@ -15,9 +15,7 @@ public:
   ~Backlog();
 
   // funções
-  void setCabeca(Tarefa *h);
   Tarefa *getCabeca();
-  void setCauda(Tarefa *t);
   Tarefa *getCauda();
   void setQuantidade(int quantidade);
   int getQuantidade();

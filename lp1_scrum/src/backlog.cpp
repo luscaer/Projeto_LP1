@@ -25,16 +25,8 @@ Backlog::~Backlog(){
   }
 }
 
-void Backlog::setCabeca(Tarefa * h){
-  this->cabeca = h;
-}
-
 Tarefa* Backlog::getCabeca(){
   return this->cabeca;
-}
-
-void Backlog::setCauda(Tarefa * t){
-  this->cauda = t;  
 }
 
 Tarefa* Backlog::getCauda(){
