@@ -1,5 +1,9 @@
 #include "../include/backlog.hpp"
 #include <iostream>
+#include <vector>
+#include <algorithm>
+
+
 
 Backlog::Backlog(){
   this->cauda = new Tarefa("CAUDA - NÃO DEVE SER ACESSADO");
@@ -69,6 +73,8 @@ bool Backlog::addTarefa(Tarefa * t){
     this->quantidade++;
     return true;
   }
+
+  organizarTarefas();
 }
 
 bool Backlog::deletarTarefa(Tarefa * t){
@@ -131,3 +137,43 @@ Tarefa * Backlog::getTarefa(int id){
 
   return nullptr;
 }
+
+//orgnizar tarefas em ordem decrescente de acordo com os Pontos de esforço
+
+bool Backlog::compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2) {
+    return t1->getPontosDeEsforco() > t2->getPontosDeEsforco();
+}
+
+void Backlog::organizarTarefas() {
+        if (cabeca == nullptr) {
+            // Não há tarefas no backlog
+            return;
+        }
+
+        // Converte as tarefas para um vetor para facilitar a ordenação
+        std::vector<Tarefa*> tarefas;
+        Tarefa* atual = cabeca;
+        while (atual != nullptr) {
+            tarefas.push_back(atual);
+            atual = atual->getProximo();
+        }
+
+        // Ordena as tarefas com base em PontosDeEsforco em ordem decrescente
+
+
+        std::sort(tarefas.begin(), tarefas.end(), compararPorPontosDeEsforco);
+
+        // Atualiza os ponteiros na lista encadeada
+        cabeca = tarefas[0];
+        cauda = tarefas[0];
+        quantidade = 1;
+        for (int i = 1; i < tarefas.size(); i++) {
+            cabeca->setAnterior(tarefas[i]);
+            tarefas[i]->setProximo(cabeca);
+            cabeca = tarefas[i];
+            quantidade++;
+        }
+
+        // Define o ponteiro da cauda como nullptr
+        cauda->setProximo(nullptr);
+    }
