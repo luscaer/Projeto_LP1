@@ -3,8 +3,6 @@
 #include <vector>
 #include <algorithm>
 
-
-
 Backlog::Backlog(){
   this->cauda = new Tarefa("CAUDA - NÃO DEVE SER ACESSADO");
   this->cabeca = new Tarefa("CABEÇA - NÃO DEVE SER ACESSADO");
@@ -145,7 +143,7 @@ bool Backlog::compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2) {
 }
 
 void Backlog::organizarTarefas() {
-        if (cabeca == nullptr) {
+        if (this->cabeca->getProximo() == this->cauda) {
             // Não há tarefas no backlog
             return;
         }
@@ -159,8 +157,6 @@ void Backlog::organizarTarefas() {
         }
 
         // Ordena as tarefas com base em PontosDeEsforco em ordem decrescente
-
-
         std::sort(tarefas.begin(), tarefas.end(), compararPorPontosDeEsforco);
 
         // Atualiza os ponteiros na lista encadeada
