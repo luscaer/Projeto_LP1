@@ -19,6 +19,11 @@ void ProductOwner::deletarTarefaBacklog(Backlog b, Tarefa * t)
     b.deletarTarefa(t);
 }
 
+void ProductOwner::cadastrarDuracaoDaSprint(Sprint s, int dias)
+{
+    s.setTempoDaSprint(dias);
+}
+
 void ProductOwner::cadastrarTarefaSprint(Sprint s, Backlog b, int id)
 {
     s.addTarefa(b, id);

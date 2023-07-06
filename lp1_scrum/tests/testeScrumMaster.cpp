@@ -4,78 +4,96 @@
 #include "../include/backlog.hpp"
 
 int main() {
-    //Criação do Product Owner
-    std::string nome;
+    //Criação do Product Owner, Do ProductBackLog e da Sprint
+    ProductOwner P = ProductOwner("Product Owner");
+    Backlog B;
+    Tarefa a = Tarefa(5, 10, "Teste 1", nullptr, "PARA FAZER");
+    Tarefa b = Tarefa(10, 20, "Teste 2", nullptr, "PARA FAZER");
+    Tarefa c = Tarefa(15, 30, "Teste 3", nullptr, "PARA FAZER");
+    Tarefa d = Tarefa(20, 40, "Teste 4", nullptr, "PARA FAZER");
+    Tarefa e = Tarefa(25, 50, "Teste 5", nullptr, "PARA FAZER");
+    Tarefa f = Tarefa(30, 60, "Teste 6", nullptr, "PARA FAZER");
+    Tarefa g = Tarefa(35, 70, "Teste 7", nullptr, "PARA FAZER");
+    Tarefa h = Tarefa(40, 80, "Teste 8", nullptr, "PARA FAZER");
 
-    std::cout << "Digite o nome do Product Owner: ";
+
+    P.cadastrarTarefaBacklog(B, &a);
+    P.cadastrarTarefaBacklog(B, &b);
+    P.cadastrarTarefaBacklog(B, &c);
+    P.cadastrarTarefaBacklog(B, &d);
+    P.cadastrarTarefaBacklog(B, &e);
+    P.cadastrarTarefaBacklog(B, &f);
+    P.cadastrarTarefaBacklog(B, &g);
+    P.cadastrarTarefaBacklog(B, &h);
+    std::cout << "Teste 1 - CONSULTAR TAREFAS BACKLOG" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    B.consultar();
+
+    Sprint S;
+
+    P.cadastrarDuracaoDaSprint(S, 21);
+
+    P.cadastrarTarefaSprint(S, B, 5);
+    P.cadastrarTarefaSprint(S, B, 15);
+    P.cadastrarTarefaSprint(S, B, 20);
+    P.cadastrarTarefaSprint(S, B, 35);
+    P.cadastrarTarefaSprint(S, B, 40);
+    std::cout << "Teste 2 - CONSULTAR TAREFAS SPRINT" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    S.gerarRelatorio();
+
+    //Criação dos Devs
+    Dev v = Dev("Nome 1");
+    Dev w = Dev("Nome 2");
+    Dev x = Dev("Nome 3");
+    Dev y = Dev("Nome 4");
+    Dev z = Dev("Nome 5");
+
+    //Criação da lista encadeada de devs (Por enquanto não vai servir para nada).
+
+    v.setAnterior(nullptr);
+    v.setProximo(&w);
+    w.setAnterior(&v);
+    w.setProximo(&x);
+    x.setAnterior(&w);
+    x.setProximo(&y);
+    y.setAnterior(&x);
+    y.setProximo(&z);
+    z.setAnterior(&y);
+    z.setProximo(nullptr);
+
+    //Criação do Scrum Master
+    std::string nome;
+    std::cout << "Digite o nome do Scrum Master: ";
     std::getline(std::cin, nome);
 
-    ProductOwner P = ProductOwner(nome);
-
-    std::cout << "Olá " << nome << ". Seja bem vindo ao gerenciador de BackLog!" << std::endl;
-    std::cout << "Deseja construir um BackLog? [Y/N]" << std::endl;
+    ScrumMaster SM = ScrumMaster(nome);
+    
+    std::cout << "Olá " << nome << ". Seja bem vindo ao atribuidor de Tarefas!" << std::endl;
+    std::cout << "Deseja atribuir uma tarefa? [Y/N]" << std::endl;
 
     char comando;
     std::cin >> comando;
-    if(comando == 'N'){
+    if(comando == 'N' || comando == 'n'){
         std::cout << "Ok, tenha um bom dia!" << std::endl;
         return 0;
     }
 
-    //CRIANDO E INSERINDO  TAREFAS NO BACKLOG
-    Backlog b;
-
-    std::cout << "Deseja inserir uma tarefa no BackLog? [Y/N]" << std::endl;
-    std::cin >> comando;
-
-    while(comando =='Y'){
-        int id, PontosDeEsforco;
-        std::string instrucoes, status;
-
-        std::cout << "Digite a ID da tarefa: ";
-        std::cin >> id;
-        std::cout << "Digite os pontos de prioridade da tarefa: ";
-        std::cin >> PontosDeEsforco;
-        std::cin.ignore();
-        std::cout << "Digite as instruções da tarefa: ";
-        std::getline(std::cin, instrucoes);
-        std::cout << "Digite o Status da tarefa: ";
-        std::getline(std::cin, status);
-
-        Tarefa * t = new Tarefa(id, PontosDeEsforco, instrucoes, nullptr, status);
-        P.cadastrarTarefa(b, t);
-
-        std::cout << "Deseja inserir mais uma tarefa no BackLog? [Y/N]" << std::endl;
-        std::cin >> comando;
-    }
-
-    std::cout << "Teste 1 - CONSULTAR TAREFAS" << std::endl;
+    std::cout << "SPRINT ATIVA:" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    b.consultar();
+    S.gerarRelatorio();
 
-    std::cout << "Deseja remover uma tarefa do BackLog? [Y/N]" << std::endl;
-    std::cin >> comando;
+    //Implementar um while quando fizermos as funções para operar com a lista encadeada de devs.
 
-    while(comando == 'Y'){
-        int id;
-        std::cout << "Digite o ID da tarefa" << std::endl;
-        std::cin >> id;
+    SM.atribuirTarefaAPessoa(S, 5, &w);
+    SM.atribuirTarefaAPessoa(S, 15, &z);
+    SM.atribuirTarefaAPessoa(S, 20, &x);
+    SM.atribuirTarefaAPessoa(S, 35, &v);
+    SM.atribuirTarefaAPessoa(S, 40, &y);
 
-        Tarefa * t = b.getTarefa(id);
-
-        if(t == nullptr){
-            std::cout << "Não foi possível encontrar a tarefa com o ID fornecido." << std::endl;
-        }
-
-        P.deletarTarefa(b, t);
-
-        std::cout << "Deseja remover mais uma tarefa do BackLog? [Y/N]" << std::endl;
-        std::cin >> comando;
-    }
-    
-    std::cout << "Teste 2 - DELETAR TAREFAS" << std::endl;
+    std::cout << "Teste 3 - SPRINT APÓS ATRIBUIÇÕES" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    b.consultar();
+    S.gerarRelatorio();
 
     return 0;
 }

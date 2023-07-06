@@ -17,8 +17,8 @@ class Sprint{
         ~Sprint();
 
         //funções
-        void setTempoPassado(int tempo);
-        int getTempoPassado();
+        void setTempoDaSprint(int tempo);
+        int getTempoDaSprint();
         void setQuantidade(int quantidade);
         int getQuantidade();
         bool addTarefa(Backlog b, int id); //Recebe um backlog com as tarefas definidas pelo Product Owner e o ID da tarefa que será adicionada na sprint.

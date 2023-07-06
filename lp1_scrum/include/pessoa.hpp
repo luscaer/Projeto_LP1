@@ -18,7 +18,7 @@ class Pessoa {
         Pessoa(string nome);
         Pessoa(string nome, string funcao);
         Pessoa(string nome, Pessoa* proximo);
-        Pessoa(Pessoa* proximo, string nome, string funcao);
+        Pessoa(string nome, string funcao, Pessoa* proximo);
         ~Pessoa();
 
         //funções

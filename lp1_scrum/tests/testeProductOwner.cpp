@@ -42,7 +42,7 @@ int main() {
         std::getline(std::cin, status);
 
         Tarefa * t = new Tarefa(id, PontosDeEsforco, instrucoes, nullptr, status);
-        P.cadastrarTarefa(b, t);
+        P.cadastrarTarefaBacklog(b, t);
 
         std::cout << "Deseja inserir mais uma tarefa no BackLog? [Y/N]" << std::endl;
         std::cin >> comando;
@@ -66,7 +66,7 @@ int main() {
             std::cout << "Não foi possível encontrar a tarefa com o ID fornecido." << std::endl;
         }
 
-        P.deletarTarefa(b, t);
+        P.deletarTarefaBacklog(b, t);
 
         std::cout << "Deseja remover mais uma tarefa do BackLog? [Y/N]" << std::endl;
         std::cin >> comando;

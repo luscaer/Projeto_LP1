@@ -17,10 +17,10 @@ Sprint::Sprint(){
 
 Sprint::~Sprint(){}
 
-void Sprint::setTempoPassado(int tempo){
+void Sprint::setTempoDaSprint(int tempo){
   this->tempoDaSprint = tempo;
 }
-int Sprint::getTempoPassado(){
+int Sprint::getTempoDaSprint(){
   return tempoDaSprint;
 }
 void Sprint::setQuantidade(int quantidade){

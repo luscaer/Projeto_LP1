@@ -24,7 +24,7 @@ Pessoa::Pessoa(string nome, Pessoa* proximo){
   this->proximo = proximo; 
 }
 
-Pessoa::Pessoa(Pessoa *proximo, string nome, string funcao){
+Pessoa::Pessoa(string nome, string funcao, Pessoa *proximo){
   this->nome = nome;
   this->funcao = funcao;
   this->proximo = proximo; 
