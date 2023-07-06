@@ -9,12 +9,22 @@ ProductOwner::ProductOwner(string nome) : Pessoa(nome, "Product Owner") {}
 ProductOwner::~ProductOwner() {}
 
 //Cadastrar ou Deletar tarefa
-void ProductOwner::cadastrarTarefa(Backlog b, Tarefa * t)
+void ProductOwner::cadastrarTarefaBacklog(Backlog b, Tarefa * t)
 {
     b.addTarefa(t);
 }
 
-void ProductOwner::deletarTarefa(Backlog b, Tarefa * t)
+void ProductOwner::deletarTarefaBacklog(Backlog b, Tarefa * t)
 {
     b.deletarTarefa(t);
+}
+
+void ProductOwner::cadastrarTarefaSprint(Sprint s, Backlog b, int id)
+{
+    s.addTarefa(b, id);
+}
+
+void ProductOwner::deletarTarefaSprint(Sprint s, Tarefa * t)
+{
+    s.deletarTarefa(t);
 }

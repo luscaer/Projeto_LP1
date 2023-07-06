@@ -41,6 +41,14 @@ Pessoa* Pessoa::getProximo(){
   return this->proximo;
 }
 
+void Pessoa::setAnterior(Pessoa* anterior){
+  this->anterior = anterior;
+}
+
+Pessoa* Pessoa::getAnterior(){
+  return this->anterior;
+}
+
 void Pessoa::setNome(string nome){
   this->nome = nome;
 }

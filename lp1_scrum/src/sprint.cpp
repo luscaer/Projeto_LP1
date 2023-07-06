@@ -30,26 +30,6 @@ int Sprint::getQuantidade(){
   return this->quantidade;
 }
 
-//Gerar relatório.
-void Sprint::gerarRelatorio(){
-  if (this->quantidade == 0) {
-    std::cout << "Sprint vazia." << std::endl;
-    return;
-  }
-
-  Tarefa * atual = this->cabeca->getProximo();
-
-  while (atual != this->cauda) {
-    atual->imprimirTarefa();
-    atual = atual->getProximo();
-  }
-}
-
-//Gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação). (Ordem alfabética?)
-void Sprint::gerarRelatorioDeDev(Dev * p){
-  
-}
-
 bool Sprint::addTarefa(Backlog b, int id){
   Tarefa * aux = new Tarefa();
   //Lista vazia, inserir após a cabeça.
@@ -105,6 +85,43 @@ bool Sprint::deletarTarefa(Tarefa * t){
 
   std::cout << "Não foi possível deletar!" << std::endl;
   return false;
+}
+
+Tarefa * Sprint::getTarefa(int id){
+  Tarefa * atual = this->cabeca->getProximo();
+
+  if(atual != this->cauda){
+    for(int i=0;i<this->quantidade;i++){
+      if(atual->getId()==id){
+        return atual;
+      }
+      else{
+        atual = atual->getProximo();
+      }
+    }
+  }
+
+  return nullptr;
+}
+
+//Gerar relatório.
+void Sprint::gerarRelatorio(){
+  if (this->quantidade == 0) {
+    std::cout << "Sprint vazia." << std::endl;
+    return;
+  }
+
+  Tarefa * atual = this->cabeca->getProximo();
+
+  while (atual != this->cauda) {
+    atual->imprimirTarefa();
+    atual = atual->getProximo();
+  }
+}
+
+//Gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação). (Ordem alfabética?)
+void Sprint::gerarRelatorioDeDev(Dev * p){
+  
 }
 
 //bool Sprint::ordenarAlfabetico() {}

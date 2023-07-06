@@ -2,6 +2,7 @@
 #define SCRUMMASTER_HPP
 
 #include "tarefa.hpp"
+#include "sprint.hpp"
 
 class ScrumMaster : public Pessoa {
     public:
@@ -11,8 +12,7 @@ class ScrumMaster : public Pessoa {
         ~ScrumMaster();
 
         //funções
-        void atribuirTarefa(Tarefa * t);
-        void atribuirTarefaAPessoa(Tarefa * t, Pessoa * p); 
+        void atribuirTarefaAPessoa(Sprint s, int id, Dev * p); 
 };
 
 #endif

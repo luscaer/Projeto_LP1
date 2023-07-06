@@ -9,6 +9,9 @@ ScrumMaster::ScrumMaster(string nome) : Pessoa(nome, "Scrum Master") {}
 ScrumMaster::~ScrumMaster() {}
 
 //Atribuições de tarefas
-void ScrumMaster::atribuirTarefa(Tarefa * t) {}
 
-void ScrumMaster::atribuirTarefaAPessoa(Tarefa * t, Pessoa * p) {}
+void ScrumMaster::atribuirTarefaAPessoa(Sprint s, int id, Dev * p)
+{
+    Tarefa * aux = s.getTarefa(id);
+    aux->setResponsavel(p);
+}

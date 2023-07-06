@@ -3,6 +3,7 @@
 
 #include "tarefa.hpp"
 #include "backlog.hpp"
+#include "sprint.hpp"
 
 class ProductOwner : public Pessoa {
     public:
@@ -11,8 +12,10 @@ class ProductOwner : public Pessoa {
         ProductOwner(string nome);
         ~ProductOwner();
 
-        void cadastrarTarefa(Backlog b, Tarefa * t);
-        void deletarTarefa(Backlog b, Tarefa * t);
+        void cadastrarTarefaBacklog(Backlog b, Tarefa * t);
+        void deletarTarefaBacklog(Backlog b, Tarefa * t);
+        void cadastrarTarefaSprint(Sprint s, Backlog b, int id);
+        void deletarTarefaSprint(Sprint s, Tarefa * t);
 };
 
 #endif

@@ -8,6 +8,7 @@ using namespace std;
 class Pessoa {
     protected:
         Pessoa* proximo;
+        Pessoa* anterior;
         string nome;
         string funcao;
 
@@ -23,6 +24,8 @@ class Pessoa {
         //funções
         void setProximo(Pessoa* proximo);
         Pessoa* getProximo();
+        void setAnterior(Pessoa* anterior);
+        Pessoa* getAnterior();
         void setNome(string nome);
         string getNome();
         void setFuncao(string funcao);
