@@ -1,5 +1,8 @@
-#include "../include/dev.hpp"
-#include "../include/pessoa.hpp"
+//#include "../include/dev.hpp"
+//#include "../include/pessoa.hpp"
+#include "dev.hpp"
+#include "pessoa.hpp"
+
 
 //Construtores
 Dev::Dev() {}
