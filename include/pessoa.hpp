@@ -18,10 +18,6 @@ class Pessoa {
         ~Pessoa();
 
         //funções
-        void setProximo(Pessoa* proximo);
-        Pessoa* getProximo();
-        void setAnterior(Pessoa* anterior);
-        Pessoa* getAnterior();
         void setNome(string nome);
         string getNome();
         void setFuncao(string funcao);

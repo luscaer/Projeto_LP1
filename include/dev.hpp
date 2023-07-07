@@ -20,6 +20,11 @@ class Dev : public Pessoa {
         ~Dev();
 
         //funções
+        void setProximo(Dev* proximo);
+        Dev* getProximo();
+        void setAnterior(Dev* anterior);
+        Dev* getAnterior();
+
         void RealizarTarefas(string status);
         void RealizarTarefaEspecifica(string status, int idTarefa);
 };

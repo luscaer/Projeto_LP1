@@ -8,6 +8,26 @@ Dev::Dev(string nome) : Pessoa(nome, "Desenvolvedor") {}
 //Destrutor
 Dev::~Dev() {}
 
+void Dev::setProximo(Dev* proximo)
+{
+    this->proximo = proximo;
+}
+
+Dev* Dev::getProximo()
+{
+    return this->proximo;
+}
+
+void Dev::setAnterior(Dev* anterior)
+{
+    this->anterior = anterior;
+}
+
+Dev* Dev::getAnterior()
+{
+    return this->anterior;
+}
+
 //Realização de tarefas
 void Dev::RealizarTarefas(string status) {}
 
