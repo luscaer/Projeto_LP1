@@ -3,51 +3,19 @@
 Pessoa::Pessoa(){
   this->nome = "";
   this->funcao = "";
-  this->proximo = nullptr;
 }
 
 Pessoa::Pessoa(std::string nome){
   this->nome = nome;
   this->funcao = "";
-  this->proximo = nullptr;
 }
 
 Pessoa::Pessoa(string nome, string funcao){
   this->nome = nome;
   this->funcao = funcao;
-  this->proximo = nullptr; 
-}
-
-Pessoa::Pessoa(string nome, Pessoa* proximo){
-  this->nome = nome;
-  this->funcao = "";
-  this->proximo = proximo; 
-}
-
-Pessoa::Pessoa(string nome, string funcao, Pessoa *proximo){
-  this->nome = nome;
-  this->funcao = funcao;
-  this->proximo = proximo; 
 }
 
 Pessoa::~Pessoa(){}
-
-
-void Pessoa::setProximo(Pessoa* proximo){
-  this->proximo = proximo;
-}
-
-Pessoa* Pessoa::getProximo(){
-  return this->proximo;
-}
-
-void Pessoa::setAnterior(Pessoa* anterior){
-  this->anterior = anterior;
-}
-
-Pessoa* Pessoa::getAnterior(){
-  return this->anterior;
-}
 
 void Pessoa::setNome(string nome){
   this->nome = nome;

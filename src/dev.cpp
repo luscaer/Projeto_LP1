@@ -4,7 +4,6 @@
 //Construtores
 Dev::Dev() {}
 Dev::Dev(string nome) : Pessoa(nome, "Desenvolvedor") {}
-Dev::Dev(string nome, Pessoa * proximo) : Pessoa(nome, proximo) {}
 
 //Destrutor
 Dev::~Dev() {}

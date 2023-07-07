@@ -14,8 +14,6 @@ class Tester : public Pessoa {
         //funções
         void validarTarefasDe(Dev * p);
         void declinarTarefasDe(Dev * p);
-        void validarTarefa(Tarefa * t);
-        void declinarTarefa(Tarefa * t);
 };
 
 #endif

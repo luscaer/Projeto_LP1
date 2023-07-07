@@ -7,8 +7,6 @@ using namespace std;
 
 class Pessoa {
     protected:
-        Pessoa* proximo;
-        Pessoa* anterior;
         string nome;
         string funcao;
 
@@ -17,8 +15,6 @@ class Pessoa {
         Pessoa();
         Pessoa(string nome);
         Pessoa(string nome, string funcao);
-        Pessoa(string nome, Pessoa* proximo);
-        Pessoa(string nome, string funcao, Pessoa* proximo);
         ~Pessoa();
 
         //funções

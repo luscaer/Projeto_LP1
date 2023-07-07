@@ -2,17 +2,21 @@
 #define DEV_HPP
 
 #include "pessoa.hpp"
-//#include "tarefa.h"
+#include "tarefa.hpp"
 #include <string>
 
 using namespace std;
 
 class Dev : public Pessoa {
+    protected:
+        Dev* proximo;
+        Dev* anterior;
+        Tarefa* minhaTarefa;
+
     public:
         //construtores e destrutores
         Dev();
         Dev(string nome);
-        Dev(string nome, Pessoa * proximo);
         ~Dev();
 
         //funções

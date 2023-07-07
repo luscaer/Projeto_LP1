@@ -28,7 +28,7 @@ class Tarefa {
         //funções
         void setProximo(Tarefa * proximo);
         Tarefa* getProximo();
-        void setAnterior(Tarefa * proximo);
+        void setAnterior(Tarefa * anterior);
         Tarefa* getAnterior();
         void setId(int id);
         int getId();

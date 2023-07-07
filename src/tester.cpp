@@ -3,8 +3,7 @@
 
 //Construtores
 Tester::Tester() {}
-Tester::Tester(string nome) : Pessoa(nome) {}
-Tester::Tester(string nome, Pessoa * proximo) : Pessoa(nome, proximo) {}
+Tester::Tester(string nome) : Pessoa(nome, "Tester") {}
 
 //Destrutor
 Tester::~Tester() {}
@@ -14,12 +13,5 @@ void Tester::validarTarefasDe(Dev * p){
   
 }
 void Tester::declinarTarefasDe(Dev * p){
-  
-}
-void Tester::validarTarefa(Tarefa * t){
-  
-}
-
-void Tester::declinarTarefa(Tarefa * t){
   
 }
