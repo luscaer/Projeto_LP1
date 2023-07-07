@@ -72,7 +72,7 @@ bool Backlog::addTarefa(Tarefa * t){
     return true;
   }
 
-  organizarTarefas();
+  return false;
 }
 
 bool Backlog::deletarTarefa(Tarefa * t){
@@ -136,7 +136,7 @@ Tarefa * Backlog::getTarefa(int id){
   return nullptr;
 }
 
-//orgnizar tarefas em ordem decrescente de acordo com os Pontos de esforço
+/*orgnizar tarefas em ordem decrescente de acordo com os Pontos de esforço
 
 bool Backlog::compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2) {
     return t1->getPontosDeEsforco() > t2->getPontosDeEsforco();
@@ -173,3 +173,4 @@ void Backlog::organizarTarefas() {
         // Define o ponteiro da cauda como nullptr
         cauda->setProximo(nullptr);
     }
+*/
