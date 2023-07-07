@@ -12,7 +12,7 @@ class ScrumMaster : public Pessoa {
         ~ScrumMaster();
 
         //funções
-        void atribuirTarefaAPessoa(Sprint s, int id, Dev * p); 
+        void atribuirTarefaAPessoa(Sprint * s, int id, Dev * p); 
 };
 
 #endif

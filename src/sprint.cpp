@@ -30,11 +30,11 @@ int Sprint::getQuantidade(){
   return this->quantidade;
 }
 
-bool Sprint::addTarefa(Backlog b, int id){
+bool Sprint::addTarefa(Backlog * b, int id){
   Tarefa * aux = new Tarefa();
   //Lista vazia, inserir após a cabeça.
   if(this->quantidade == 0){
-    aux = b.getTarefa(id);
+    aux = b->getTarefa(id);
 
     aux->setProximo(this->cabeca->getProximo());
     aux->setAnterior(this->cabeca);
@@ -46,7 +46,7 @@ bool Sprint::addTarefa(Backlog b, int id){
   }
   //Vai adicionar sempre na posição após a cabeça, para depois usar algum método de ordenação.
   else{
-    Tarefa * proximo = b.getTarefa(id);
+    Tarefa * proximo = b->getTarefa(id);
     proximo->setAnterior(cabeca);
 
     aux = this->cabeca->getProximo();

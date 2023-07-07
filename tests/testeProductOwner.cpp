@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../include/productOwner.hpp"
 #include "../include/backlog.hpp"
+#include "../include/sprint.hpp"
 
 int main() {
     //Criação do Product Owner
@@ -42,7 +43,8 @@ int main() {
         std::getline(std::cin, status);
 
         Tarefa * t = new Tarefa(id, PontosDeEsforco, instrucoes, nullptr, status);
-        P.cadastrarTarefaBacklog(b, t);
+        //b.addTarefa(t);
+        P.cadastrarTarefaBacklog(&b, t);
 
         std::cout << "Deseja inserir mais uma tarefa no BackLog? [Y/N]" << std::endl;
         std::cin >> comando;
@@ -66,7 +68,8 @@ int main() {
             std::cout << "Não foi possível encontrar a tarefa com o ID fornecido." << std::endl;
         }
 
-        P.deletarTarefaBacklog(b, t);
+        //b.deletarTarefa(t);
+        P.deletarTarefaBacklog(&b, t);
 
         std::cout << "Deseja remover mais uma tarefa do BackLog? [Y/N]" << std::endl;
         std::cin >> comando;

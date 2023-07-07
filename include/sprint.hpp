@@ -21,7 +21,7 @@ class Sprint{
         int getTempoDaSprint();
         void setQuantidade(int quantidade);
         int getQuantidade();
-        bool addTarefa(Backlog b, int id); //Recebe um backlog com as tarefas definidas pelo Product Owner e o ID da tarefa que será adicionada na sprint.
+        bool addTarefa(Backlog * b, int id); //Recebe um backlog com as tarefas definidas pelo Product Owner e o ID da tarefa que será adicionada na sprint.
         bool deletarTarefa(Tarefa *t);
         Tarefa * getTarefa(int id);
         void gerarRelatorio(); //Gerar relatório pôs ‘n’ tempo passado

@@ -17,14 +17,14 @@ int main() {
     Tarefa h = Tarefa(40, 80, "Teste 8", nullptr, "PARA FAZER");
 
 
-    P.cadastrarTarefaBacklog(B, &a);
-    P.cadastrarTarefaBacklog(B, &b);
-    P.cadastrarTarefaBacklog(B, &c);
-    P.cadastrarTarefaBacklog(B, &d);
-    P.cadastrarTarefaBacklog(B, &e);
-    P.cadastrarTarefaBacklog(B, &f);
-    P.cadastrarTarefaBacklog(B, &g);
-    P.cadastrarTarefaBacklog(B, &h);
+    P.cadastrarTarefaBacklog(&B, &a);
+    P.cadastrarTarefaBacklog(&B, &b);
+    P.cadastrarTarefaBacklog(&B, &c);
+    P.cadastrarTarefaBacklog(&B, &d);
+    P.cadastrarTarefaBacklog(&B, &e);
+    P.cadastrarTarefaBacklog(&B, &f);
+    P.cadastrarTarefaBacklog(&B, &g);
+    P.cadastrarTarefaBacklog(&B, &h);
     std::cout << "Teste 1 - CONSULTAR TAREFAS BACKLOG" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     B.consultar();
@@ -33,11 +33,11 @@ int main() {
 
     P.cadastrarDuracaoDaSprint(S, 21);
 
-    P.cadastrarTarefaSprint(S, B, 5);
-    P.cadastrarTarefaSprint(S, B, 15);
-    P.cadastrarTarefaSprint(S, B, 20);
-    P.cadastrarTarefaSprint(S, B, 35);
-    P.cadastrarTarefaSprint(S, B, 40);
+    P.cadastrarTarefaSprint(&S, &B, 5);
+    P.cadastrarTarefaSprint(&S, &B, 15);
+    P.cadastrarTarefaSprint(&S, &B, 20);
+    P.cadastrarTarefaSprint(&S, &B, 35);
+    P.cadastrarTarefaSprint(&S, &B, 40);
     std::cout << "Teste 2 - CONSULTAR TAREFAS SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     S.gerarRelatorio();
@@ -85,11 +85,11 @@ int main() {
 
     //Implementar um while quando fizermos as funções para operar com a lista encadeada de devs.
 
-    SM.atribuirTarefaAPessoa(S, 5, &w);
-    SM.atribuirTarefaAPessoa(S, 15, &z);
-    SM.atribuirTarefaAPessoa(S, 20, &x);
-    SM.atribuirTarefaAPessoa(S, 35, &v);
-    SM.atribuirTarefaAPessoa(S, 40, &y);
+    SM.atribuirTarefaAPessoa(&S, 5, &w);
+    SM.atribuirTarefaAPessoa(&S, 15, &z);
+    SM.atribuirTarefaAPessoa(&S, 20, &x);
+    SM.atribuirTarefaAPessoa(&S, 35, &v);
+    SM.atribuirTarefaAPessoa(&S, 40, &y);
 
     std::cout << "Teste 3 - SPRINT APÓS ATRIBUIÇÕES" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
