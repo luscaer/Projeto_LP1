@@ -50,7 +50,7 @@ int main() {
         std::cin >> comando;
     }
 
-    std::cout << "Teste 1 - CONSULTAR TAREFAS" << std::endl;
+    std::cout << "Teste 1 - CONSULTAR TAREFAS BACKLOG" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     b.consultar();
 
@@ -58,6 +58,10 @@ int main() {
     std::cin >> comando;
 
     while(comando == 'Y'){
+        std::cout << "TAREFAS NO BACKLOG" << std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
+        b.consultar();
+
         int id;
         std::cout << "Digite o ID da tarefa" << std::endl;
         std::cin >> id;
@@ -75,9 +79,65 @@ int main() {
         std::cin >> comando;
     }
     
-    std::cout << "Teste 2 - DELETAR TAREFAS" << std::endl;
+    std::cout << "Teste 2 - DELETAR TAREFAS BACKLOG" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     b.consultar();
+
+    std::cout << "Deseja inserir uma tarefa na Sprint? [Y/N]" << std::endl;
+    std::cin >> comando;
+    if(comando == 'N'){
+        std::cout << "Ok, tenha um bom dia!" << std::endl;
+        return 0;
+    }
+
+    Sprint S;
+
+    while(comando =='Y'){
+        std::cout << "TAREFAS NO BACKLOG" << std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
+        b.consultar();
+
+        int ID;
+        std::cout << "Qual Tarefa deseja inserir na Sprint? (Informe o ID)" << std::endl;
+        std::cin >> ID;
+
+        P.cadastrarTarefaSprint(&S, &b, ID);
+
+        std::cout << "Deseja inserir mais uma tarefa na Sprint? [Y/N]" << std::endl;
+        std::cin >> comando;
+    }
+
+    std::cout << "Teste 3 - CONSULTAR TAREFAS SPRINT" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    S.gerarRelatorio();
+
+    std::cout << "Deseja remover uma tarefa da Sprint? [Y/N]" << std::endl;
+    std::cin >> comando;
+
+    while(comando == 'Y'){
+        std::cout << "TAREFAS NA SPRINT" << std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
+        S.gerarRelatorio();
+
+        int id;
+        std::cout << "Digite o ID da tarefa" << std::endl;
+        std::cin >> id;
+
+        Tarefa * t = S.getTarefa(id);
+
+        if(t == nullptr){
+            std::cout << "Não foi possível encontrar a tarefa com o ID fornecido." << std::endl;
+        }
+
+        P.deletarTarefaSprint(&S, t);
+
+        std::cout << "Deseja remover mais uma tarefa da Sprint? [Y/N]" << std::endl;
+        std::cin >> comando;
+    }
+    
+    std::cout << "Teste 3 - DELETAR TAREFAS SPRINT" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    S.gerarRelatorio();
 
     return 0;
 }

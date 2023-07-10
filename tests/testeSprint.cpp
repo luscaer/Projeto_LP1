@@ -44,7 +44,7 @@ int main() {
     std::cout << "------------------------------------------------------------------" << std::endl;
     P.cadastrarDuracaoDaSprint(&SP, 21);
     std::cout << "DURAÇÃO CADASTRADA" << std::endl;
-    std::cout << "DURAÇÃO DA SPRINT: " << SP.getTempoDaSprint() << "DIAS" << std::endl;
+    std::cout << "DURAÇÃO DA SPRINT: " << SP.getTempoDaSprint() << " DIAS" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
 
     std::cout << "Teste 5 - CADASTRAR TAREFAS NA SPRINT" << std::endl;
@@ -55,7 +55,8 @@ int main() {
     P.cadastrarTarefaSprint(&SP, &B, 35);
     P.cadastrarTarefaSprint(&SP, &B, 40);
     std::cout << "TAREFAS CADASTRADAS" << std::endl;
-
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    
     std::cout << "Teste 6 - CONSULTAR TAREFAS SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     SP.gerarRelatorio();

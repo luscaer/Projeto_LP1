@@ -31,7 +31,7 @@ int main() {
 
     Sprint S;
 
-    P.cadastrarDuracaoDaSprint(S, 21);
+    P.cadastrarDuracaoDaSprint(&S, 21);
 
     P.cadastrarTarefaSprint(&S, &B, 5);
     P.cadastrarTarefaSprint(&S, &B, 15);
