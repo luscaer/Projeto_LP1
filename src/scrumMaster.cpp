@@ -2,7 +2,7 @@
 #include "../include/pessoa.hpp"
 
 // Construtores
-ScrumMaster::ScrumMaster() {}
+ScrumMaster::ScrumMaster() : Pessoa ("", "Scrum Master"){}
 ScrumMaster::ScrumMaster(string nome) : Pessoa(nome, "Scrum Master") {}
 
 // Destrutor

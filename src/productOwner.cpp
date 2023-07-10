@@ -2,7 +2,7 @@
 #include "../include/pessoa.hpp"
 
 // Construtores
-ProductOwner::ProductOwner() : Pessoa() {}
+ProductOwner::ProductOwner() : Pessoa("", "Product Owner") {}
 ProductOwner::ProductOwner(string nome) : Pessoa(nome, "Product Owner") {}
 
 // Destrutor

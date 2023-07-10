@@ -1,11 +1,12 @@
-//#include "../include/dev.hpp"
+#include "../include/dev.hpp"
 //#include "../include/pessoa.hpp"
-#include "dev.hpp"
-#include "pessoa.hpp"
+//#include "dev.hpp"
+//#include "pessoa.hpp"
+#include <iostream>
 
 
 //Construtores
-Dev::Dev() {}
+Dev::Dev() : Pessoa ("", "Desenvolvedor") {}
 Dev::Dev(string nome) : Pessoa(nome, "Desenvolvedor") {}
 
 //Destrutor
@@ -31,7 +32,16 @@ Dev* Dev::getAnterior()
     return this->anterior;
 }
 
-//Realização de tarefas
-void Dev::RealizarTarefas(string status) {}
+void Dev::imprimirDev(){
+    if (this == nullptr) {
+    std::cout << "Desenvolvedor inexistente." << endl;
+    return;
+    }
 
-void Dev::RealizarTarefaEspecifica(string status, int idTarefa) {}
+    std::cout << "Nome: " << this->nome << endl;
+    cout << "------------------------------------------------------------------" << endl;
+}
+
+//Realização de tarefas, so vai a ver uma tarefa por vez
+void Dev::RealizarTarefas(string status, int idTarefa) {}
+

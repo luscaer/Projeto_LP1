@@ -24,9 +24,10 @@ class Dev : public Pessoa {
         Dev* getProximo();
         void setAnterior(Dev* anterior);
         Dev* getAnterior();
+        void imprimirDev();
 
-        void RealizarTarefas(string status);
-        void RealizarTarefaEspecifica(string status, int idTarefa);
+        void RealizarTarefas(string status, int idTarefa);
+
 };
 
 #endif
