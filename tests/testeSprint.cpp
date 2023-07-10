@@ -38,46 +38,46 @@ int main() {
     std::cout << "------------------------------------------------------------------" << std::endl;
     B.consultar();
 
-    Sprint S;
+    Sprint SP;
 
     std::cout << "Teste 4 - CADASTRAR DURAÇÃO DA SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.cadastrarDuracaoDaSprint(S, 21);
+    P.cadastrarDuracaoDaSprint(&SP, 21);
     std::cout << "DURAÇÃO CADASTRADA" << std::endl;
-    std::cout << "DURAÇÃO DA SPRINT: " << S.getTempoDaSprint() << "DIAS" << std::endl;
+    std::cout << "DURAÇÃO DA SPRINT: " << SP.getTempoDaSprint() << "DIAS" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
 
     std::cout << "Teste 5 - CADASTRAR TAREFAS NA SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.cadastrarTarefaSprint(&S, &B, 5);
-    P.cadastrarTarefaSprint(&S, &B, 15);
-    P.cadastrarTarefaSprint(&S, &B, 20);
-    P.cadastrarTarefaSprint(&S, &B, 35);
-    P.cadastrarTarefaSprint(&S, &B, 40);
+    P.cadastrarTarefaSprint(&SP, &B, 5);
+    P.cadastrarTarefaSprint(&SP, &B, 15);
+    P.cadastrarTarefaSprint(&SP, &B, 20);
+    P.cadastrarTarefaSprint(&SP, &B, 35);
+    P.cadastrarTarefaSprint(&SP, &B, 40);
     std::cout << "TAREFAS CADASTRADAS" << std::endl;
 
     std::cout << "Teste 6 - CONSULTAR TAREFAS SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    S.gerarRelatorio();
+    SP.gerarRelatorio();
 
     std::cout << "Teste 7 - DELETAR TAREFAS NA SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.deletarTarefaSprint(&S, &c);
-    P.deletarTarefaSprint(&S, &h);
+    P.deletarTarefaSprint(&SP, &c);
+    P.deletarTarefaSprint(&SP, &h);
     std::cout << "TAREFAS DELETADAS" << std::endl;
 
     std::cout << "Teste 8 - CONSULTAR TAREFAS SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    S.gerarRelatorio();
+    SP.gerarRelatorio();
 
     std::cout << "Teste 9 - FALHA AO DELETAR TAREFAS NA SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.deletarTarefaSprint(&S, &b);
-    P.deletarTarefaSprint(&S, &f);
+    P.deletarTarefaSprint(&SP, &b);
+    P.deletarTarefaSprint(&SP, &f);
 
     std::cout << "Teste 10 - CONSULTAR TAREFAS SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    S.gerarRelatorio();
+    SP.gerarRelatorio();
 
   return 0;
 }
