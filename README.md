@@ -25,3 +25,5 @@ Estamos usando lista duplamente encadeada ordenada e lista duplamente encadeada.
 - Algoritmo de busca binária recursiva e iterativa. As duas tem complexidae O(1) no melhor caso, que acontece quando encontramos o elemento no meio do vetor. O pior caso ocorre quando o elemento que buscamos não está no vetor. Tanto a versão iterativa, como a versão recursiva possuem complexidade de O(log n).
 - Algoritmo de ordenação QuickSort com complexidade O(n*log n) no melhor caso e no caso médio, e O(n^2)
  no pior caso. E o SelectionSort com complexidade O(n^2) no melhor e pior caso.
+
+![Diagrama_de_Classes](https://github.com/luscaer/Projeto_LP1/assets/102298712/759150e9-eeb1-4c2d-9b62-e5424ffe50e2)
