@@ -93,6 +93,8 @@ int main(){
     Tarefa * listaEndTarefas = new Tarefa[100];
     int qntEndT = 0;
 
+    Sprint * S = new Sprint();
+
 
     for(int i = 0;i<100;i++){
         listaEnd[i] = Dev();
@@ -540,7 +542,7 @@ int main(){
                                                                 cout << "Cadastrando tarefa no backlog..." << endl;
 
                                                                 if(id == listaEndTarefas[qntEndT].getId()){
-                                                                    b.addTarefa(&listaEndTarefas[qntEndT]);
+                                                                    PD.cadastrarTarefaBacklog(&b, &listaEndTarefas[qntEndT]);
                                                                     cout << "Tarefa cadastrada com sucesso..." << endl;
                                                                     if(existeBacklog == false) existeBacklog = true;
 
@@ -566,6 +568,7 @@ int main(){
                                                                             cout << "Cadastrando tarefa no backlog..." << endl;
 
                                                                              if(id == listaEndTarefas[qntEndT].getId()){
+                                                                                PD.cadastrarTarefaBacklog(&b, &listaEndTarefas[qntEndT]);
                                                                                 cout << "Tarefa cadastrada com sucesso..." << endl;
                                                                                 qntEndT++;
                                                                             }else{
@@ -615,8 +618,21 @@ int main(){
 
                                                         //case 1 atribui as tarefas da sprint para os desenvolvedores, caso a sprint não tenha sido inicializada tem que voltar ao menu anterior
                                                         case 1:{
-                                                            if(existeSprint == true) cout << "Atribuindo tarefas aos desevolvedores" << endl;
-                                                            else cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
+                                                            //Dev * atual;
+                                                            // if(existeSprint == true){
+                                                            //     for(int i = 0; i < listaDevs.getQuantidade();i++){
+                                                            //         for(int j = 0; i < qntEnd+1; j++){
+                                                            //             if(listaEndTarefas[j].getResponsavel() == NULL ){
+                                                            //                 //listaEndTarefas[j].setResponsavel(atual);
+                                                                            
+                                                            //                 break;
+                                                            //             }
+                                                            //             atual = atual->getProximo();
+                                                            //         }
+                                                                    
+                                                            //     }
+                                                            // }
+                                                            // else cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
                                                 
                                                             break;
                                                         }
@@ -713,7 +729,7 @@ int main(){
                                                         cout << "-------------------------------------" << endl;
                                                         cout << "Escolha o que quer fazer:" << endl;
                                                         cout << "-------------------------------------" << endl;
-                                                        cout << "1 - Validar todas as tarefas" << endl; //tarefas da sprint
+                                                        cout << "1 - Validar todas as tarefas" << endl; //tarefas da sprint que estão pra ser testadas
                                                         cout << "2 - Validar tarefas de um desenvolvedor" << endl; //tarefas da sprint
                                                         cout << "0 - voltar " << endl;
                                                         cin >> op7;
@@ -775,9 +791,58 @@ int main(){
                                     if(existeMembros == true){
                                         if(existeBacklog == true){
                                             if(existeSprint == false){
+                                            
+                                            int id = 0;
+                                            char c;
+                                            bool existeId = false;
+                                            Tarefa * aux;
 
-                                            cout << "iniciando uma sprint" << endl;
-                                            existeSprint = true;
+                                            cout << "iniciando uma sprint..." << endl;
+                                            //Sprint * S = new Sprint();
+
+                                            cout << "Escolha as tarefas do Backlog que deseja adicionar na Sprint:" << endl;
+                                            b.consultar();
+                                            
+                                            cout << "Id da tarefa escolhida: " << endl;
+                                            cin >> id;
+                                            
+                                            aux = b.getTarefa(id);
+
+                                            if(aux != nullptr){
+                                                //PD.cadastrarTarefaSprint(S, &b, id);
+                                                S->addTarefa(&b, id);
+                                                S->setQuantidade(S->getQuantidade()+1);
+
+                                                cout << "Tarefa adicionada com sucesso" << endl;
+                                                existeSprint = true;
+
+                                                do{
+                                                    cout << "Deseja adicionar outra tarefa?[S/N]" << endl;
+                                                    cin >> c;
+
+                                                    if(c == 's' || c == 'S'){
+                                                        cout << "Id da tarefa escolhida: " << endl;
+                                                        cin >> id;
+
+                                                        //PD.cadastrarTarefaSprint(S, &b, id);
+                                                        S->addTarefa(&b, id);
+                                                        S->setQuantidade(S->getQuantidade()+1);
+                                                        cout << "Tarefa adicionada com sucesso" << endl;
+                                                    }
+
+                                                    
+
+                                                }while(c == 's' || c == 'S');
+
+                                                int tempo;
+                                                cout << "Escreva o tempo que irá durar a Sprint: " << endl;
+                                                cin >> tempo;
+                                                S->setTempoDaSprint(tempo);
+
+                                            }else{
+                                                cout << "Não existe essa tarefa no Backlog! escreva um id válido." << endl;
+                                            }
+                                    
                                             break;
 
                                             }else{
@@ -818,19 +883,104 @@ int main(){
                                                 //recebe os n dias do usuario
                                                 //passa esses dias
                                                 //gera um relatorio a cada tempo passado e diz quanto tempo falta pra acabar, quando acaba muda existeSprint para false
-                                                cout << "Passando o tempo..." << endl;
+                                                if(existeSprint == true && S != nullptr){
+                                                    //cout << "ENTROU" << endl;
+                                                     int tempo, dias;
+
+                                                     //Sprint aux;
+
+                                                     //aux = *S;
+
+                                                    tempo = S->getTempoDaSprint();
+
+                                                    if(tempo > 0){
+                                                        cout << "Faltam " << tempo << " para a o fim da Sprint."<< endl;
+                                                        cout << "Digite quantos dias deseja passar: "<< endl;
+                                                        cin >> dias;
+
+                                                        if(tempo - dias < 0){
+                                                            cout << "Por favor escreva dias validos!"<< endl;
+                                                        }else{
+                                                            S->setTempoDaSprint(tempo-dias);
+                                                            cout << dias << " dias passados!"<< endl;
+                                                            cout << "Agora faltam " << S->getTempoDaSprint() << " para a o fim da Sprint."<< endl;
+
+                                                            if(S != nullptr){
+                                                                cout << "-------------------------------"<< endl;
+                                                                cout << "Relatório da Sprint"<< endl;
+                                                                cout << "-------------------------------"<< endl;
+                                                                cout << "Faltam " << S->getTempoDaSprint() << "dias" << " para a Sprint acabar." << endl;
+                                                                S->gerarRelatorio();        
+                                                            }else{
+                                                                cout << "A Sprint não tem tarefas cadastradas!"<< endl;
+                                                            }
+                                                        }
+                                                    }
+                                                }else{
+                                                    cout << "A Sprint não foi iniciada!"<< endl;
+                                                }
                                                 break;
                                             }
+
                                             //case 2, finaliza a sprint de uma vez e gera um relatorio final
                                             case 2:{
-                                                cout << "finalizando sprint..." << endl;
+                                                if(existeSprint == true){
+                                                    cout << "finalizando sprint..." << endl;
+                                                    S->setTempoDaSprint(0);
+
+                                                    cout << "Sprint finalizada! Gerando Relatório Final..." << endl;
+                                                    if(S != nullptr){
+                                                        cout << "-------------------------------"<< endl;
+                                                        cout << "Relatório da Sprint"<< endl;
+                                                        cout << "-------------------------------"<< endl;
+                                                        cout << "Faltam " << S->getTempoDaSprint() << " dias" << " para a Sprint acabar." << endl;
+                                                        S->gerarRelatorio();        
+                                                    }else{
+                                                        cout << "A Sprint não tem tarefas cadastradas!"<< endl;
+                                                    }
+
+                                                    char c; 
+
+                                                    cout << "Deseja fechar a Sprint? se sim não será possível acessar novamente o relatório" << endl;
+                                                    cin >> c;
+
+                                                    if(c == 's' || c == 'S'){
+                                                        cout << "Fechando Sprint..."<< endl;
+                                                        S = new Sprint();
+
+                                                        S->setQuantidade(0);
+
+                                                        op8 = 0;
+                                                        existeSprint = false;
+                                                    }else{
+                                                        break;
+                                                    }
+
+                                                }else{
+                                                    cout << "A Sprint não foi iniciada!"<< endl;
+                                                    
+                                                }
+
                                                 //gera um relatorio final, muda existeSprint para false
                                                 break;
                                             }
                                         
                                             //case 3, gera um relatorio do estado "atual da sprint"
                                             case 3:{
-                                                cout << "gerando relatorio..." << endl;
+                                                if(existeSprint == true){
+                                                    cout << "gerando relatorio..." << endl;
+                                                    if(S != nullptr){
+                                                        cout << "-------------------------------"<< endl;
+                                                        cout << "Relatório da Sprint"<< endl;
+                                                        cout << "-------------------------------"<< endl;
+                                                        S->gerarRelatorio();  
+                                                        cout << "-------------------------------"<< endl;
+                                                        cout << "Faltam " << S->getTempoDaSprint() << " dias" << " para a Sprint acabar." << endl;
+                                                              
+                                                    }else{
+                                                        cout << "A Sprint não tem tarefas cadastradas!"<< endl;
+                                                    }
+                                                }
                                                 break;
                                             }
 
