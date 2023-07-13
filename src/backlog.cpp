@@ -155,7 +155,7 @@ void Backlog::organizarTarefas() {
 
         // Converte as tarefas para um vetor para facilitar a ordenação
         std::vector<Tarefa*> tarefas;
-        Tarefa* atual = this->cabeca;
+        Tarefa* atual = this->cabeca->getProximo();
         while (atual != this->cauda) {
             tarefas.push_back(atual);
             atual = atual->getProximo();
@@ -165,11 +165,9 @@ void Backlog::organizarTarefas() {
         std::sort(tarefas.begin(), tarefas.end(), compararPorPontosDeEsforco);
 
         //Deleta os ponteiros desordenados da lista encadeada
-        Tarefa * atual = new Tarefa();
+        atual = this->cabeca->getProximo();
         Tarefa * proximo = new Tarefa();
         Tarefa * anterior = new Tarefa();
-
-        atual = this->cabeca->getProximo();
 
         while(atual != this->cauda){
             proximo = atual->getProximo();
@@ -178,26 +176,18 @@ void Backlog::organizarTarefas() {
             proximo->setAnterior(anterior);
             anterior->setProximo(proximo);
 
-            //O problema da função está aqui:
-            delete atual;
+            //Quando tento usar delete atual o programa para de executar e exibe a mensagem:
+            //free(): invalid pointer
+            //Aborted
+            //delete atual;
 
             this->quantidade--;
             atual = proximo;
         }
 
         // Atualiza os ponteiros na lista encadeada
-        this->cabeca->setProximo(tarefas[0]);
-        cauda = tarefas[0];
-        quantidade = 1;
-        for (int i = 1; i < tarefas.size(); i++) {
-            cabeca->setAnterior(tarefas[i]);
-            tarefas[i]->setProximo(cabeca);
-            cabeca = tarefas[i];
-            quantidade++;
+        for (int i = 0; i < tarefas.size(); i++) {
+            this->addTarefa(tarefas[i]);
         }
-
-        // Define o ponteiro da cauda como nullptr
-        cauda->setProximo(nullptr);
 }
-
 */
