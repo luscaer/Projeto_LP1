@@ -26,7 +26,8 @@ class Dev : public Pessoa {
         Dev* getAnterior();
         void imprimirDev();
 
-        void RealizarTarefas(string status, int idTarefa);
+        //void RealizarTarefas(string status, int idTarefa);
+        //void RealizarTarefas(string status, int idTarefa, Sprint * s);
 
 };
 

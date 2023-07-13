@@ -45,6 +45,9 @@
 
 using namespace std;
 
+Sprint * S = new Sprint();
+
+
 
 //vai funcionar um projeto por vez
 int main(){
@@ -92,8 +95,6 @@ int main(){
     Backlog b = Backlog();
     Tarefa * listaEndTarefas = new Tarefa[100];
     int qntEndT = 0;
-
-    Sprint * S = new Sprint();
 
 
     for(int i = 0;i<100;i++){
@@ -298,60 +299,25 @@ int main(){
                                         //cadrastar Devs
                                         case 3:{
 
-                                            if(existeDev == false){
-                                                //para caso tenha mais devs
+                                                 //para caso tenha mais devs
                                                 char c;
                                                 string nome;
+
                                                 cout << "Digite o nome do  Desenvolvedor: ";
                                                 cin.ignore();
                                                 getline(cin, nome);
                                               
-
-                                                D = Dev(nome);
-                                              
-                                                if(D.getNome() == nome){
-                                                    listaDevs.addDev(&D);
-                                                    cout << nome << " foi cadastrado(a) como Desenvolvedor" << endl;
-                                                    existeDev = true;
-                                                }else {
-                                                    cout << "Falha no cadastramento do Desenvolvedor" << endl;
-                                                }
-
-                                                do{
-                                                    cout << "Deseja cadastrar outro desenvolvedor?";
-                                                    cin>>c;
-
-                                                    if(c == 's'|| c == 'S'){
-
-                                                    cout << "Digite o nome do  Desenvolvedor: ";
-                                                    cin.ignore();
-                                                    getline(cin, nome);
-
-                                                    listaEnd[qntEnd] = Dev(nome);
-
-                                                    listaDevs.addDev(&listaEnd[qntEnd]);
-                                                    qntEnd++;
-                        
-                                                    }else{
-                                                        break;
-                                                    }
-
-                                                }while(c == 's' || c == 'S');
-                                              
-                                              }else{
-                                                //para caso tenha mais devs
-                                                char c;
-                                                string nome;
-                                                cout << "Digite o nome do  Desenvolvedor: ";
-                                                cin.ignore();
-                                                getline(cin, nome);
-                                              
-
                                                 listaEnd[qntEnd] = Dev(nome);
                                               
                                                 if(listaEnd[qntEnd].getNome() == nome){
+                                                    //if(existeDev == false){
+                                                        //listaDevs = new listaDevs(&listaEnd[qntEnd],&listaEnd[qntEnd]);
+                                                    //}else{
+                                                    //    listaDevs.addDev(&listaEnd[qntEnd]);
+                                                    //}
                                                     listaDevs.addDev(&listaEnd[qntEnd]);
                                                     cout << nome << " foi cadastrado(a) como Desenvolvedor" << endl;
+                                                    
                                                     qntEnd++;
                                                     existeDev = true;
                                                 }else {
@@ -371,6 +337,7 @@ int main(){
                                                     listaEnd[qntEnd] = Dev(nome);
 
                                                     listaDevs.addDev(&listaEnd[qntEnd]);
+                                                    cout << nome << " foi cadastrado(a) como Desenvolvedor" << endl;
                                                     qntEnd++;
                         
                                                     }else{
@@ -378,13 +345,12 @@ int main(){
                                                     }
 
                                                 }while(c == 's' || c == 'S');
-                                              }
                                               
+                                                cout << "--------------------------------------" << endl;
+                                                cout << "Desenvolvedores cadastrados: " << endl;
+                                                cout << "--------------------------------------" << endl;
+                                                listaDevs.consultar();
                                               
-                                              cout << "--------------------------------------" << endl;
-                                              cout << "Desenvolvedores cadastrados: " << endl;
-                                              cout << "--------------------------------------" << endl;
-                                              listaDevs.consultar();
                                               
 
                                             break;
@@ -435,13 +401,17 @@ int main(){
                                         cout << "--------------------------------------" << endl;
                                         cout << "LISTA DE MEMBROS DO PROJETO " << projeto << endl;
                                         cout << "--------------------------------------" << endl;
-                                        cout << "Product Owner: " << PD.getNome() << endl;
+                                        cout << "Nome: " << PD.getNome() << endl;
+                                        cout << "Função: Product Owner" << endl;
                                         cout << "--------------------------------------" << endl;
-                                        cout << "Scrum Master: " << SM.getNome() << endl;
-                                         cout << "--------------------------------------" << endl;
-                                        cout << "Desenvolvedores: " << endl;
+                                        cout << "Nome: " << SM.getNome() << endl;
+                                        cout << "Função: Scrum Master "<< endl;
+                                        cout << "--------------------------------------" << endl;
+                                        
                                         listaDevs.consultar();
-                                        cout << "Tester: " << T.getNome() << endl;
+
+                                        cout << "Nome: " << T.getNome() << endl;
+                                        cout << "Função: Tester" << endl;
                                     }
                                     else cout << "Não existe membros cadastrados" << endl;
 
@@ -591,19 +561,22 @@ int main(){
 
                                                     break;
                                                 }
+                                                
                                                 //como so existe um Scrum Master não precisa escolher qual
-            
                                                 //menu de funções do Scrum Master 
                                                 case 2:{
+                                                    cout << "-------------------------------------" << endl;
+                                                        cout << "Você agora é o Scrum Master:" << endl;
+                                                        cout << "Olá, "<< SM.getNome() << " seja bem-vindo(a) ao menu de função do Scrum Master" << endl;
                                                     do{
                                                         cout << "-------------------------------------" << endl;
                                                         cout << "Você agora é o Scrum Master:" << endl;
                                                         //lista as informações do Scrum Master
                                                         cout << "-------------------------------------" << endl;
-                                                        cout << "Escolha o que quer fazer:" << endl;
+                                                        cout << "Escolha o que deseja fazer:" << endl;
                                                         cout << "-------------------------------------" << endl;
                                                         cout << "1 - Atribuir tarefas aos desenvolvedores" << endl; //tarefas da sprint
-                                                        cout << "2 - Atribuir tarefa a um desenvolvedor especifico" << endl; //tarefas da sprint
+                                                        //cout << "2 - Atribuir tarefa a um desenvolvedor especifico" << endl; //tarefas da sprint
                                                         cout << "0 - voltar " << endl;
                                                         cin >> op5;
                                                         //lembrando que um desenvolvedor executa uma tarefa por vez
@@ -618,32 +591,62 @@ int main(){
 
                                                         //case 1 atribui as tarefas da sprint para os desenvolvedores, caso a sprint não tenha sido inicializada tem que voltar ao menu anterior
                                                         case 1:{
-                                                            //Dev * atual;
-                                                            // if(existeSprint == true){
-                                                            //     for(int i = 0; i < listaDevs.getQuantidade();i++){
-                                                            //         for(int j = 0; i < qntEnd+1; j++){
-                                                            //             if(listaEndTarefas[j].getResponsavel() == NULL ){
-                                                            //                 //listaEndTarefas[j].setResponsavel(atual);
-                                                                            
-                                                            //                 break;
-                                                            //             }
-                                                            //             atual = atual->getProximo();
-                                                            //         }
+                                                            
+                                                            if(existeSprint == true){
+                                                               
+                                                                Dev * dAtual  = listaDevs.getCabeca();
+                                                                //cout << "cabeca: " << dAtual->getNome() << endl;
+                                                                Tarefa * tAtual;
+
+                                                                for(int i = 0; i < listaDevs.getQuantidade(); i++){
+                                                                    tAtual = S->getCabeca();
+                                                                    tAtual = tAtual->getProximo();
+
+                                                                    for(int j = 0; j < S->getQuantidade()-1; j++){
+                                                                        if(tAtual->getResponsavel() == NULL ){
+                                                                            //listaEndTarefas[j].setResponsavel(atual);
+                                                                            //tAtual->setResponsavel(dAtual);
+                                                                            //SM.atribuirTarefaAPessoa(S, tAtual->getId(), dAtual);
+                                                                            SM.atribuirTarefa(dAtual, tAtual);
+                                                                            //cout << "entrei: " << dAtual->getNome() << endl;
+                                                                            break;
+
+                                                                        }else{
+
+                                                                            tAtual = tAtual->getProximo();
+                                                                        }
+                                                                    }
+
+                                                                    dAtual = dAtual->getProximo();
                                                                     
-                                                            //     }
-                                                            // }
-                                                            // else cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
+                                                                }
+
+
+                                                                cout << "gerando relatorio..." << endl;
+                                                                if(S != nullptr){
+                                                                    cout << "-------------------------------"<< endl;
+                                                                    cout << "Relatório da Sprint"<< endl;
+                                                                    cout << "-------------------------------"<< endl;
+                                                                    S->gerarRelatorio();  
+                                                                    cout << "-------------------------------"<< endl;
+                                                                    cout << "Faltam " << S->getTempoDaSprint() << " dias" << " para a Sprint acabar." << endl; 
+                                                                }else{
+                                                                    cout << "A Sprint não tem tarefas cadastradas!"<< endl;
+                                                                }
+                                                                
+                                                            }
+                                                            else cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
                                                 
                                                             break;
                                                         }
 
                                                         //case 2 atribui uma tarefa especifica a algum desenvolvedor, caso a sprint não tenha sido inicializada tem que voltar ao menu anterior
-                                                        case 2:{
-                                                            if(existeSprint == true) cout << "Atribuindo tarefa ao desevolvedor"<< endl;
-                                                            else cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
+                                                        // case 2:{
+                                                        //     if(existeSprint == true) cout << "Atribuindo tarefa ao desevolvedor"<< endl;
+                                                        //     else cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
                                                 
-                                                            break;
-                                                        }
+                                                        //     break;
+                                                        // }
                                                     
                                                 
                                                         default:
@@ -657,64 +660,163 @@ int main(){
                                                 //como pode existir varios dev é necessario escolher um
                                                 //menu de funções dos devs
                                                 case 3:{
-                                                    do{
-                                                        //lista os desenvolvedores se houver mais de um
-                                                        //escolhe o desenvolvedor
-                                                        cout << "-------------------------------------" << endl;
-                                                        cout << "Você agora é um Desenvolvedor:" << endl;
-                                                        //lista as informações do Dev
+                                                        string nomeDev;
+                                                        Dev * devEscolhido = new Dev();
+                                                        Dev * lista = listaDevs.getCabeca();
+                                                        bool acheiDev = false;
 
-                                                        //caso so tenha um desenvolvedor vai direto para o menu
 
-                                                        //esse menu vai entrar dps de escolher o desenvolvedor
-                                                    
-                                                        cout << "-------------------------------------" << endl;
-                                                        cout << "Escolha o que quer fazer:" << endl;
-                                                        cout << "-------------------------------------" << endl;
-                                                        cout << "1 - Realizar tarefas" << endl; 
-                                                        cout << "2 - Realizar uma tarefa expecífica" << endl; 
-                                                        cout << "0 - voltar " << endl;
-                                                        cin >> op6;
-
-                                                        switch (op6)
-                                                        {
-                                                    
-                                                        case 0:{
-                                                            cout << "Voltando ao menu do projeto... Aguarde..." << endl;
-                                                            break;
-                                                        }
+                                                        cout << "Escolha o desenvolvedor que você deseja entrar:" << endl;
+                                                        listaDevs.consultar();
+                                                        cout << "Escreva o nome do desenvolvedor escolhido:" << endl;
+                                                        cin.ignore();
+                                                        getline(cin, nomeDev);
                                                         
-                                                        //case 1, muda status de todas as tarefas do desenvolvedor
-                                                        case 1:{
-                                                            if(existeSprint == true){
-                                                                //muda status de todas as tarefas
-                                                                cout << "realizando as tarefas" << endl;
-                                                                break;
+                                                        for(int i = 0; i<listaDevs.getQuantidade();i++){
+                                                            if(lista != NULL){
+                                                                if(lista->getNome() == nomeDev){
+                                                                    devEscolhido = lista;
+                                                                    acheiDev = true;
+                                                                
+                                                                    break;
+                                                                }else{
+                                                                    lista = lista->getProximo();
+                                                                }
                                                             }else{
-                                                                cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
+                                                                cout << "Desenvolvedor não encontrado" << endl;
                                                             }
-                                                            break;
+                                                            
                                                         }
-                                                        
+
+
+                                                    if(acheiDev == true){
+                                                        cout << "-------------------------------------" << endl;
+                                                        cout << "Você agora é um desenvolvedor:" << endl;
+                                                        cout << "Olá, "<< devEscolhido->getNome() << " seja bem-vindo(a) ao menu de função do Scrum Master" << endl;
+                                                        do{  
+                                                            //lista os desenvolvedores se houver mais de um
+                                                            //escolhe o desenvolvedor
+                                                            cout << "-------------------------------------" << endl;
+                                                            cout << "Você agora é um Desenvolvedor:" << endl;
+                                                            //lista as informações do Dev
+
+                                                            //caso so tenha um desenvolvedor vai direto para o menu
+
+                                                            //esse menu vai entrar dps de escolher o desenvolvedor
                                                     
-                                                        //case 2, muda status de uma tarefa especifica do desenvolvedor
-                                                        case 2:{
-                                                            if(existeSprint == true){
-                                                                //listar tarefas do desenvolvedor
-                                                                //escolher a tarefa e mudar status
-                                                                cout << "realizando tarefa" << endl;
+                                                            cout << "-------------------------------------" << endl;
+                                                            cout << "Escolha o que quer fazer:" << endl;
+                                                            cout << "-------------------------------------" << endl;
+                                                            cout << "1 - Realizar tarefa" << endl; 
+                                                            //cout << "2 - Realizar uma tarefa expecífica" << endl; 
+                                                            cout << "0 - voltar " << endl;
+                                                            cin >> op6;
+
+                                                            switch (op6)
+                                                            {
+                                                    
+                                                            case 0:{
+                                                                cout << "Voltando ao menu do projeto... Aguarde..." << endl;
                                                                 break;
-                                                            }else{
-                                                                cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
                                                             }
-                                                            break;
-                                                        }
+                                                        
+                                                            //case 1, muda status de todas as tarefas do desenvolvedor
+                                                            case 1:{
+                                                                //bool existeTarefaProDev = false;
+                                                                char c;
+                                                                int escolha;
+                                                                
+                                                                Tarefa * tarefaAtual = S->getCabeca();
+                                                                tarefaAtual = tarefaAtual->getProximo();
+
+                    
+
+
+                                                                 if(existeSprint == true){
+                                                                    
+
+                                                                     for(int i=0;i<S->getQuantidade()-1;i++){
+                                                                        if(tarefaAtual != NULL){
+                                                                            if(tarefaAtual->getResponsavel() == devEscolhido && tarefaAtual->getStatus()!="CONCLUIDA" && tarefaAtual->getStatus()!="TESTAR"){
+                                                                                //existeTarefaProDev = true;
+                                                                                cout << "VOCE DESEJA MUDAR O STATUS DA SEGUINTE TAREFA?" << endl;
+                                                                                tarefaAtual->imprimirTarefa();
+                                                                                cout << "[S/N]:" << endl;
+                                                                                cin >> c;
+
+                                                                                if(c == 's' || c == 'S'){
+                                                                                    cout << "ESCOLHA O STATUS NOVO:" << endl;
+                                                                                    cout << "1 - MEIO FEITA" << endl;
+                                                                                    cout << "2 - TESTAR" << endl;
+                                                                                    cin >> escolha;
+
+                                                                                    if(escolha == 1){
+                                                                                        if(tarefaAtual->getStatus() != "TESTAR"){
+                                                                                            tarefaAtual->setStatus("MEIO FEITA");
+                                                                                        }
+    
+                                                                                    }else if(escolha == 2){
+                                                                                        tarefaAtual->setStatus("TESTAR");
+                                                                                    }else{
+                                                                                        cout << "Escolha uma opção válida!" << endl;
+                                                                                        break;
+                                                                                    }
+                                                                                }
+
+                                                                                
+                                                                            }
+                                                                            tarefaAtual = tarefaAtual->getProximo();
+                                                                        }else{
+                                                                            cout << "Não existe tarefa para você!" << endl;
+                                                                        }
+                                                                    }
+
+                                                                        cout << "gerando relatorio..." << endl;
+                                                                        if(S != nullptr){
+                                                                            cout << "-------------------------------"<< endl;
+                                                                            cout << "Relatório da Sprint"<< endl;
+                                                                            cout << "-------------------------------"<< endl;
+                                                                            S->gerarRelatorio();  
+                                                                            cout << "-------------------------------"<< endl;
+                                                                            cout << "Faltam " << S->getTempoDaSprint() << " dias" << " para a Sprint acabar." << endl; 
+                                                                        }else{
+                                                                            cout << "A Sprint não tem tarefas cadastradas!"<< endl;
+                                                                        }
+                                                                    
+
+                                                        
+                                                                    break;
+                                                                }else{
+                                                                    cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
+                                                                }
+                                                                break;
+                                                            }
                                                         
                                                     
-                                                        default:
-                                                            break;
-                                                        }
-                                                    }while(op6 != 0);
+                                                            //case 2, muda status de uma tarefa especifica do desenvolvedor
+                                                            // case 2:{
+                                                            //     if(existeSprint == true){
+                                                            //         //listar tarefas do desenvolvedor
+                                                            //         //escolher a tarefa e mudar status
+                                                            //         cout << "realizando tarefa" << endl;
+                                                            //         break;
+                                                            //     }else{
+                                                            //         cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
+                                                            //     }
+                                                            //     break;
+                                                            // }
+                                                        
+                                                    
+                                                            default:
+                                                                break;
+                                                            }
+                                                        }while(op6 != 0);
+
+                                                    }else{
+                                                        cout << "Escolha um desenvolvedor válido!" << endl;
+                                                    }
+
+                                                    
                                                     
                                                     break;
                                                 }
@@ -722,6 +824,9 @@ int main(){
                                                 //como so existe um Tester não precisa escolher qual
                                                 //menu de funções do Tester
                                                 case 4:{
+                                                        cout << "-------------------------------------" << endl;
+                                                        cout << "Você agora é um desenvolvedor:" << endl;
+                                                        cout << "Olá, "<< T.getNome() << " seja bem-vindo(a) ao menu de função do Scrum Master" << endl;
                                                     do{
                                                         cout << "-------------------------------------" << endl;
                                                         cout << "Você agora é o Tester:" << endl;
@@ -730,7 +835,7 @@ int main(){
                                                         cout << "Escolha o que quer fazer:" << endl;
                                                         cout << "-------------------------------------" << endl;
                                                         cout << "1 - Validar todas as tarefas" << endl; //tarefas da sprint que estão pra ser testadas
-                                                        cout << "2 - Validar tarefas de um desenvolvedor" << endl; //tarefas da sprint
+                                                        //cout << "2 - Validar tarefas de um desenvolvedor" << endl; //tarefas da sprint
                                                         cout << "0 - voltar " << endl;
                                                         cin >> op7;
                                                     
@@ -740,7 +845,49 @@ int main(){
                                                         //case 1 valida todas as tarefas com status "TESTE", ou valida ou retorna elas
                                                         case 1:{
                                                             if(existeSprint == true){
-                                                                cout << "Validando tarefas" << endl;
+                                                                char c;
+                                                                Tarefa * tarefaParaSerValidada = S->getCabeca();
+                                                                tarefaParaSerValidada = tarefaParaSerValidada->getProximo();
+
+                                                                for(int i = 0; i<S->getQuantidade(); i++){
+                                                                    if(tarefaParaSerValidada != NULL){
+                                                                        if(tarefaParaSerValidada->getStatus() == "TESTAR"){
+                                                                            tarefaParaSerValidada->imprimirTarefa();
+                                                                            cout << "VALIDAR OU RETORNAR TAREFA (V = VALIDAR, R = RETORNAR)" << endl;
+                                                                       
+                                                                            cout << "[V/R]:" << endl;
+                                                                            cin >> c;
+
+                                                                            if(c == 'v' || c == 'V'){
+                                                                                tarefaParaSerValidada->setStatus("CONCLUIDA");
+                                                                                cout << "Validando tarefa..." << endl;
+                                                                            }else if(c == 'r' || c == 'R'){
+                                                                                tarefaParaSerValidada->setStatus("REVISAR");
+                                                                                cout << "Declinando tarefa..." << endl;
+                                                                            }else{
+                                                                                cout << "Escreva uma opção válida!" << endl;
+                                                                            }
+                                                                        }
+                                                                         tarefaParaSerValidada = tarefaParaSerValidada->getProximo();
+                                                                    }else{
+                                                                        cout << "Não existem tarefas para ser validadas!" << endl;
+                                                                    }
+
+                                                                }
+
+                                                                cout << "gerando relatorio..." << endl;
+                                                                if(S != nullptr){
+                                                                    cout << "-------------------------------"<< endl;
+                                                                    cout << "Relatório da Sprint"<< endl;
+                                                                    cout << "-------------------------------"<< endl;
+                                                                    S->gerarRelatorio();  
+                                                                    cout << "-------------------------------"<< endl;
+                                                                    cout << "Faltam " << S->getTempoDaSprint() << " dias" << " para a Sprint acabar." << endl; 
+                                                                }else{
+                                                                    cout << "A Sprint não tem tarefas cadastradas!"<< endl;
+                                                                }
+                                                            
+
                                                                 break;
                                                             }else{
                                                                 cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
@@ -748,19 +895,19 @@ int main(){
                                                             break;
                                                         }
                                                        
-                                                        case 2:{
-                                                            //lista os devs se tiver mais de um, escolhe, e lista as tarefas desse dev
-                                                            //se tive so um, lista as tarefas desse dev
-                                                            //verifica se tem uma tarefa com status Teste, se tiver valida, se não tiver printa que não há tarefas para teste
-                                                            if(existeSprint == true){
-                                                                cout << "Validando tarefas de um Dev" << endl;
-                                                                break;
-                                                            }else{
-                                                                cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
-                                                            }
+                                                        // case 2:{
+                                                        //     //lista os devs se tiver mais de um, escolhe, e lista as tarefas desse dev
+                                                        //     //se tive so um, lista as tarefas desse dev
+                                                        //     //verifica se tem uma tarefa com status Teste, se tiver valida, se não tiver printa que não há tarefas para teste
+                                                        //     if(existeSprint == true){
+                                                        //         cout << "Validando tarefas de um Dev" << endl;
+                                                        //         break;
+                                                        //     }else{
+                                                        //         cout << "A sprint não foi iniciada por favor, volte ao menu anterior a inicialize"<< endl;
+                                                        //     }
 
-                                                            break;
-                                                        }
+                                                        //     break;
+                                                        // }
                                                     
                                                         default:
                                                             break;
@@ -825,6 +972,7 @@ int main(){
                                                         cin >> id;
 
                                                         //PD.cadastrarTarefaSprint(S, &b, id);
+                                                        
                                                         S->addTarefa(&b, id);
                                                         S->setQuantidade(S->getQuantidade()+1);
                                                         cout << "Tarefa adicionada com sucesso" << endl;

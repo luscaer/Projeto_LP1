@@ -15,3 +15,7 @@ void ScrumMaster::atribuirTarefaAPessoa(Sprint * s, int id, Dev * p)
     Tarefa * aux = s->getTarefa(id);
     aux->setResponsavel(p);
 }
+
+void ScrumMaster::atribuirTarefa(Dev * d, Tarefa * t){
+    t->setResponsavel(d);
+}

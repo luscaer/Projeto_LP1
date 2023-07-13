@@ -17,6 +17,7 @@ class Sprint{
         ~Sprint();
 
         //funções
+        Tarefa * getCabeca();
         void setTempoDaSprint(int tempo);
         int getTempoDaSprint();
         void setQuantidade(int quantidade);

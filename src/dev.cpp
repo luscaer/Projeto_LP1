@@ -1,4 +1,6 @@
 #include "../include/dev.hpp"
+#include "../include/sprint.hpp"
+
 //#include "../include/pessoa.hpp"
 //#include "dev.hpp"
 //#include "pessoa.hpp"
@@ -39,9 +41,24 @@ void Dev::imprimirDev(){
     }
 
     std::cout << "Nome: " << this->nome << endl;
-    cout << "------------------------------------------------------------------" << endl;
+    std::cout << "Função: Desenvolvedor" << std::endl;
+    cout << "--------------------------------------" << endl;
 }
 
 //Realização de tarefas, so vai a ver uma tarefa por vez
-void Dev::RealizarTarefas(string status, int idTarefa) {}
+// void Dev::RealizarTarefas(string status, int idTarefa, Sprint * s) {
+//     Tarefa * tEscolhida = s->getCabeca();
+
+//     for(int i = 0; i<s->getQuantidade(); i++){
+//         if(tEscolhida != NULL){
+//             if(tEscolhida->getId() == idTarefa){
+//                 tEscolhida->setStatus(status);
+//                 break;
+//             }else{
+//                 tEscolhida = tEscolhida->getProximo();
+//             }
+//         }
+        
+//     }
+// }
 

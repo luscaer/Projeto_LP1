@@ -12,9 +12,12 @@ private:
 public:
   // construtores e destrutores
     listaDevs();
+    //listaDevs(Dev * cabeca, Dev * cauda);
     ~listaDevs();
 
   // funções
+  void setCabeca(Dev* c);
+  void setCauda(Dev* c); 
   Dev *getCabeca();
   Dev *getCauda();
   void setQuantidade(int quantidade);

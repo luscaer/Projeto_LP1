@@ -27,9 +27,18 @@ listaDevs::~listaDevs(){
   }
 }
 
+void listaDevs::setCabeca(Dev* c){
+   this->cabeca = c;
+}
+
+void listaDevs::setCauda(Dev* c){
+   this->cauda = c;
+}
+
 Dev* listaDevs::getCabeca(){
   return this->cabeca;
 }
+
 
 Dev* listaDevs::getCauda(){
   return this->cauda;  
@@ -49,8 +58,10 @@ bool listaDevs::addDev(Dev *d){
   if(this->quantidade == 0){
     aux = d;
 
-    aux->setProximo(this->cabeca->getProximo());
-    aux->setAnterior(this->cabeca);
+    //aux->setProximo(this->cabeca->getProximo());
+    //aux->setAnterior(this->cabeca);
+    this->setCabeca(aux);
+    this->setCauda(aux);
     this->cabeca->setProximo(aux);
     this->cauda->setAnterior(aux);
 
@@ -106,14 +117,16 @@ bool listaDevs::deletarTarefa(Dev * d){
 //mostrar tarefas do backlog
 void listaDevs::consultar(){
   if (this->quantidade == 0) {
-    std::cout << "Backlog vazio." << std::endl;
+    std::cout << "Não existem desenvolvedores cadastrados." << std::endl;
     return;
   }
 
+  this->cabeca->imprimirDev();
   Dev * atual = this->cabeca->getProximo();
 
   while (atual != this->cauda) {
     atual->imprimirDev();
+    
     atual = atual->getProximo();
   }
 }

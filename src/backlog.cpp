@@ -110,10 +110,15 @@ void Backlog::consultar(){
     return;
   }
 
+  int aux = this->quantidade;
+
   Tarefa * atual = this->cabeca->getProximo();
 
-  while (atual != this->cauda) {
-    atual->imprimirTarefa();
+  while (aux > 0) {
+    aux--;
+    if(atual != this->cauda){
+      atual->imprimirTarefa();
+    }
     atual = atual->getProximo();
   }
 }

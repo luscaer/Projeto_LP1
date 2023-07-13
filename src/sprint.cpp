@@ -17,6 +17,10 @@ Sprint::Sprint(){
 
 Sprint::~Sprint(){}
 
+Tarefa * Sprint::getCabeca(){
+  return this->cabeca;
+}
+
 void Sprint::setTempoDaSprint(int tempo){
   this->tempoDaSprint = tempo;
 }

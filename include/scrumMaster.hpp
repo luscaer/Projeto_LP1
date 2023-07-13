@@ -12,6 +12,7 @@ class ScrumMaster : public Pessoa {
         ~ScrumMaster();
 
         //funções
+        void atribuirTarefa(Dev * d, Tarefa * t); 
         void atribuirTarefaAPessoa(Sprint * s, int id, Dev * p); 
 };
 
