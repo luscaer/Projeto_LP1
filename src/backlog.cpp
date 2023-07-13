@@ -55,12 +55,55 @@ bool Backlog::addTarefa(Tarefa * t){
     this->cauda->setAnterior(aux);
 
     this->quantidade++;
+
+    //organizarTarefas();
     return true;
   }
   //Vai adicionar sempre na posição após a cabeça, para depois usar algum método de ordenação.
   else{
-    Tarefa * proximo = new Tarefa();
-    proximo = t;
+     Tarefa * proximo = new Tarefa();
+    // Tarefa * aux;
+    // Tarefa * lista;
+     proximo = t;
+
+    // if(proximo->getPontosDeEsforco() > cabeca->getPontosDeEsforco()){
+    //   aux = cabeca->getProximo();
+    //   cabeca->setAnterior(proximo);
+    //   cabeca->setProximo(proximo->getProximo());
+    //   proximo->setProximo(cabeca);
+    //   proximo->setAnterior(NULL);
+
+    //   cabeca = proximo;
+    //   proximo = aux;
+
+    //   this->quantidade++;
+    // }else{
+    //     lista = cabeca->getProximo();
+    //   do{
+    //     aux = lista->getProximo();
+    //     if(proximo->getPontosDeEsforco() > lista->getPontosDeEsforco() && aux->getPontosDeEsforco() < proximo->getPontosDeEsforco() && lista->getId() != 0){
+    //       aux = lista->getProximo();
+    //       lista->setAnterior(proximo);
+    //       lista->setProximo(proximo->getProximo());
+    //       proximo->setProximo(lista);
+    //       proximo->setAnterior(lista->getAnterior());
+
+    //       aux = lista;
+    //       lista = proximo;
+    //       proximo = aux;
+
+    //       this->quantidade++;
+    //     }else{
+    //       lista = lista->getProximo();
+    //     }
+    //     //lista = cabeca->getProximo();
+  
+    //   }while (aux != NULL);
+      
+      
+    // }
+
+
     proximo->setAnterior(cabeca);
 
     aux = this->cabeca->getProximo();
@@ -69,8 +112,12 @@ bool Backlog::addTarefa(Tarefa * t){
     
     this->cabeca->setProximo(proximo);
     this->quantidade++;
+
+    //organizarTarefas();
     return true;
   }
+
+  //organizarTarefas();
 
   return false;
 }
@@ -141,41 +188,54 @@ Tarefa * Backlog::getTarefa(int id){
   return nullptr;
 }
 
-/*orgnizar tarefas em ordem decrescente de acordo com os Pontos de esforço
+// //orgnizar tarefas em ordem decrescente de acordo com os Pontos de esforço
 
-bool Backlog::compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2) {
-    return t1->getPontosDeEsforco() > t2->getPontosDeEsforco();
-}
+// bool Backlog::compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2) {
+//     return t1->getPontosDeEsforco() > t2->getPontosDeEsforco();
+// }
 
-void Backlog::organizarTarefas() {
-        if (this->cabeca->getProximo() == this->cauda) {
-            // Não há tarefas no backlog
-            return;
-        }
+// void Backlog::organizarTarefas() {
+//         Tarefa * tarefaAtuali = this->cabeca->getProximo();
+//         Tarefa * tarefaAtualj = this->cabeca->getProximo();
+//         Tarefa * aux;
+//         Tarefa * anterio;
+//         Tarefa * proximo;
 
-        // Converte as tarefas para um vetor para facilitar a ordenação
-        std::vector<Tarefa*> tarefas;
-        Tarefa* atual = cabeca;
-        while (atual != nullptr) {
-            tarefas.push_back(atual);
-            atual = atual->getProximo();
-        }
 
-        // Ordena as tarefas com base em PontosDeEsforco em ordem decrescente
-        std::sort(tarefas.begin(), tarefas.end(), compararPorPontosDeEsforco);
+//         for(int i = 0; i< this->getQuantidade();i++){
+//           if(tarefaAtuali != NULL){
+//             Tarefa * tarefaAtualj = this->cabeca->getProximo();
+//             for(int j = i+1;j<this->getQuantidade();j++){
+//               if(tarefaAtualj != NULL){
+//                 if(tarefaAtuali->getPontosDeEsforco() > tarefaAtualj->getPontosDeEsforco()){
+//                   tarefaAtualj = tarefaAtualj->getProximo();
+//                 }else{
+//                   aux = tarefaAtualj->getProximo();
 
-        // Atualiza os ponteiros na lista encadeada
-        cabeca = tarefas[0];
-        cauda = tarefas[0];
-        quantidade = 1;
-        for (int i = 1; i < tarefas.size(); i++) {
-            cabeca->setAnterior(tarefas[i]);
-            tarefas[i]->setProximo(cabeca);
-            cabeca = tarefas[i];
-            quantidade++;
-        }
+//                   if(tarefaAtuali->getPontosDeEsforco() > aux->getPontosDeEsforco()){
+//                     aux = tarefaAtuali;
 
-        // Define o ponteiro da cauda como nullptr
-        cauda->setProximo(nullptr);
-    }
-*/
+//                     anterio = tarefaAtuali->getAnterior();
+//                     proximo = tarefaAtualj->getProximo();
+                    
+//                     tarefaAtuali = tarefaAtualj;
+//                     tarefaAtualj = tarefaAtuali;
+
+//                     tarefaAtuali->setProximo(tarefaAtualj);
+//                     tarefaAtuali->setAnterior(anterio);
+
+//                     tarefaAtualj->setAnterior(tarefaAtuali);
+//                     tarefaAtualj->setProximo(proximo);
+//                   }else{
+//                     tarefaAtualj = tarefaAtualj->getProximo();
+//                   }
+//                 }
+//               }
+//             }
+//           }else{
+//             break;
+//           }
+//           tarefaAtuali = tarefaAtuali->getProximo();
+//         }
+
+//     }

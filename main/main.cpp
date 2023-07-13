@@ -514,10 +514,11 @@ int main(){
                                                                 if(id == listaEndTarefas[qntEndT].getId()){
                                                                     PD.cadastrarTarefaBacklog(&b, &listaEndTarefas[qntEndT]);
                                                                     cout << "Tarefa cadastrada com sucesso..." << endl;
+                                                                    
                                                                     if(existeBacklog == false) existeBacklog = true;
 
                                                                     qntEndT++;
-                                                                    
+                                                                    //b.organizarTarefas();
 
                                                                     do{
                                                                         cout << "Deseja cadastrar nova tarefa?[S/N]" << endl;
@@ -541,6 +542,7 @@ int main(){
                                                                                 PD.cadastrarTarefaBacklog(&b, &listaEndTarefas[qntEndT]);
                                                                                 cout << "Tarefa cadastrada com sucesso..." << endl;
                                                                                 qntEndT++;
+                                                                                //b.organizarTarefas();
                                                                             }else{
                                                                                 cout << "Erro ao cadastrar tarefa..." << endl;
                                                                             }
