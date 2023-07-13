@@ -72,7 +72,9 @@ bool Sprint::deletarTarefa(Tarefa * t){
       proximo->setAnterior(atual->getAnterior());
       anterior->setProximo(atual->getProximo());
 
-      /*O problema da função está aqui:
+      /*Quando tento usar delete atual o programa para de executar e exibe a mensagem:
+      free(): invalid pointer
+      Aborted
       delete atual;
       */
 
@@ -122,6 +124,31 @@ void Sprint::gerarRelatorio(){
 //Gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação). (Ordem alfabética?)
 void Sprint::gerarRelatorioDeDev(Dev * p){
   
+}
+
+//Operações para Devs.
+void Sprint::realizarTarefas(Dev * Responsavel, string instrucoes){
+    Tarefa * atual = this->cabeca->getProximo();
+
+    while(atual != this->cauda){
+        if(atual->getResponsavel() == Responsavel){
+            atual->setInstrucoes(instrucoes);
+        }
+        atual = atual->getProximo();
+    }
+}
+
+void Sprint::RealizarTarefaEspecifica(Dev * Responsavel, string instrucoes, Tarefa * tarefa){
+    Tarefa * atual = this->cabeca->getProximo();
+
+    while(atual != this->cauda){
+        if(atual->getResponsavel() == Responsavel){
+            if(atual == tarefa){
+                atual->setInstrucoes(instrucoes);
+            }
+        }
+        atual = atual->getProximo();
+    }
 }
 
 //bool Sprint::ordenarAlfabetico() {}

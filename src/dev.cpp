@@ -1,8 +1,4 @@
-//#include "../include/dev.hpp"
-//#include "../include/pessoa.hpp"
 #include "dev.hpp"
-#include "pessoa.hpp"
-
 
 //Construtores
 Dev::Dev() {}
@@ -32,6 +28,12 @@ Dev* Dev::getAnterior()
 }
 
 //Realização de tarefas
-void Dev::RealizarTarefas(string status) {}
+void Dev::RealizarTarefas(Sprint * s, string status, Dev * dev) {
+    s->realizarTarefas(dev, status);
+}
 
-void Dev::RealizarTarefaEspecifica(string status, int idTarefa) {}
+void Dev::RealizarTarefaEspecifica(Sprint * s, string status, int idTarefa, Dev * dev) {
+    Tarefa * t = s->getTarefa(idTarefa);
+    
+    s->RealizarTarefaEspecifica(dev, status, t);
+}

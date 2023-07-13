@@ -26,6 +26,8 @@ class Sprint{
         Tarefa * getTarefa(int id);
         void gerarRelatorio(); //Gerar relatório pôs ‘n’ tempo passado
         void gerarRelatorioDeDev(Dev * p); //Gerar relatório do desenvolvedor/pessoa.
+        void realizarTarefas(Dev * Responsavel, string instrucoes);
+        void RealizarTarefaEspecifica(Dev * Responsavel, string instrucoes, Tarefa * tarefa);
 
         //bool ordenarAlfabetico();
         //bool ordenarPorPrioridade();

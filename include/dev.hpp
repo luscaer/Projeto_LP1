@@ -2,7 +2,7 @@
 #define DEV_HPP
 
 #include "pessoa.hpp"
-//#include "tarefa.hpp"
+#include "sprint.hpp"
 #include <string>
 
 using namespace std;
@@ -25,8 +25,8 @@ class Dev : public Pessoa {
         void setAnterior(Dev* anterior);
         Dev* getAnterior();
 
-        void RealizarTarefas(string status);
-        void RealizarTarefaEspecifica(string status, int idTarefa);
+        void RealizarTarefas(Sprint * s, string status, Dev * dev);
+        void RealizarTarefaEspecifica(Sprint * s, string status, int idTarefa, Dev * dev);
 };
 
 #endif
