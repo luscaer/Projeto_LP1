@@ -12,8 +12,8 @@ class Tester : public Pessoa {
         ~Tester();
 
         //funções
-        void validarTarefasDe(Dev * p);
-        void declinarTarefasDe(Dev * p);
+        void validarTarefas(Tarefa * tarefaParaSerValidada);
+        //void declinarTarefasDe(Dev * p);
 };
 
 #endif

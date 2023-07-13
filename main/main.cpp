@@ -603,7 +603,7 @@ int main(){
                                                                     tAtual = tAtual->getProximo();
 
                                                                     for(int j = 0; j < S->getQuantidade()-1; j++){
-                                                                        if(tAtual->getResponsavel() == NULL ){
+                                                                        if(tAtual->getResponsavel() == NULL && tAtual->getId() != 0 ){
                                                                             //listaEndTarefas[j].setResponsavel(atual);
                                                                             //tAtual->setResponsavel(dAtual);
                                                                             //SM.atribuirTarefaAPessoa(S, tAtual->getId(), dAtual);
@@ -729,8 +729,6 @@ int main(){
                                                                 Tarefa * tarefaAtual = S->getCabeca();
                                                                 tarefaAtual = tarefaAtual->getProximo();
 
-                    
-
 
                                                                  if(existeSprint == true){
                                                                     
@@ -852,21 +850,22 @@ int main(){
                                                                 for(int i = 0; i<S->getQuantidade(); i++){
                                                                     if(tarefaParaSerValidada != NULL){
                                                                         if(tarefaParaSerValidada->getStatus() == "TESTAR"){
-                                                                            tarefaParaSerValidada->imprimirTarefa();
-                                                                            cout << "VALIDAR OU RETORNAR TAREFA (V = VALIDAR, R = RETORNAR)" << endl;
+                                                                            // tarefaParaSerValidada->imprimirTarefa();
+                                                                            // cout << "VALIDAR OU RETORNAR TAREFA (V = VALIDAR, R = RETORNAR)" << endl;
                                                                        
-                                                                            cout << "[V/R]:" << endl;
-                                                                            cin >> c;
+                                                                            // cout << "[V/R]:" << endl;
+                                                                            // cin >> c;
 
-                                                                            if(c == 'v' || c == 'V'){
-                                                                                tarefaParaSerValidada->setStatus("CONCLUIDA");
-                                                                                cout << "Validando tarefa..." << endl;
-                                                                            }else if(c == 'r' || c == 'R'){
-                                                                                tarefaParaSerValidada->setStatus("REVISAR");
-                                                                                cout << "Declinando tarefa..." << endl;
-                                                                            }else{
-                                                                                cout << "Escreva uma opção válida!" << endl;
-                                                                            }
+                                                                            // if(c == 'v' || c == 'V'){
+                                                                            //     tarefaParaSerValidada->setStatus("CONCLUIDA");
+                                                                            //     cout << "Validando tarefa..." << endl;
+                                                                            // }else if(c == 'r' || c == 'R'){
+                                                                            //     tarefaParaSerValidada->setStatus("REVISAR");
+                                                                            //     cout << "Declinando tarefa..." << endl;
+                                                                            // }else{
+                                                                            //     cout << "Escreva uma opção válida!" << endl;
+                                                                            // }
+                                                                            T.validarTarefas(tarefaParaSerValidada);
                                                                         }
                                                                          tarefaParaSerValidada = tarefaParaSerValidada->getProximo();
                                                                     }else{
