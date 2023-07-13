@@ -9,9 +9,9 @@ Tester::Tester(string nome) : Pessoa(nome, "Tester") {}
 Tester::~Tester() {}
 
 //Validar ou Declinar
-void Tester::validarTarefasDe(Dev * p){
+void Tester::validarTarefasDe(Pessoa * p){
   
 }
-void Tester::declinarTarefasDe(Dev * p){
+void Tester::declinarTarefasDe(Pessoa * p){
   
 }

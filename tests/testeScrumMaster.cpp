@@ -2,6 +2,7 @@
 #include "../include/scrumMaster.hpp"
 #include "../include/productOwner.hpp"
 #include "../include/backlog.hpp"
+#include "../include/dev.hpp"
 
 int main() {
     //Criação do Product Owner, Do ProductBackLog e da Sprint
@@ -79,17 +80,26 @@ int main() {
         return 0;
     }
 
-    std::cout << "SPRINT ATIVA:" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    S.gerarRelatorio();
+    Dev * atual = &v;
+    int ID;
 
-    //Implementar um while quando fizermos as funções para operar com a lista encadeada de devs.
+    while(atual->getProximo() != nullptr){
+        std::cout << "Dev Atual: " << atual->getNome() << "." << std::endl;
+        std::cout << "Deseja atribuir alguma tarefa ao " << atual->getNome() << "? [Y/N]" << std::endl;
+        std::cin >> comando;
+        if(comando == 'Y' || comando == 'y'){
+            std::cout << "SPRINT ATIVA:" << std::endl;
+            std::cout << "------------------------------------------------------------------" << std::endl;
+            S.gerarRelatorio();
 
-    SM.atribuirTarefaAPessoa(&S, 5, &w);
-    SM.atribuirTarefaAPessoa(&S, 15, &z);
-    SM.atribuirTarefaAPessoa(&S, 20, &x);
-    SM.atribuirTarefaAPessoa(&S, 35, &v);
-    SM.atribuirTarefaAPessoa(&S, 40, &y);
+            std::cout << "Qual tarefa deseja atribuir? [DIGITE O ID]" << std::endl;
+            std::cin >> ID;
+
+            SM.atribuirTarefaAPessoa(&S, ID, atual);
+        }
+
+        atual = atual->getProximo();
+    }
 
     std::cout << "Teste 3 - SPRINT APÓS ATRIBUIÇÕES" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;

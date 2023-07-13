@@ -10,7 +10,7 @@ ScrumMaster::~ScrumMaster() {}
 
 //Atribuições de tarefas
 
-void ScrumMaster::atribuirTarefaAPessoa(Sprint * s, int id, Dev * p)
+void ScrumMaster::atribuirTarefaAPessoa(Sprint * s, int id, Pessoa * p)
 {
     Tarefa * aux = s->getTarefa(id);
     aux->setResponsavel(p);

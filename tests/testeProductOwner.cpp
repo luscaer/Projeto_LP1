@@ -91,17 +91,19 @@ int main() {
     }
 
     Sprint S;
+    int ID;
 
-    while(comando =='Y'){
+    while(comando == 'Y'){
         std::cout << "TAREFAS NO BACKLOG" << std::endl;
         std::cout << "------------------------------------------------------------------" << std::endl;
-        b.consultar();
+        //b.consultar(); Erro na segunda consulta
 
-        int ID;
         std::cout << "Qual Tarefa deseja inserir na Sprint? (Informe o ID)" << std::endl;
         std::cin >> ID;
 
         P.cadastrarTarefaSprint(&S, &b, ID);
+        S.gerarRelatorio();
+        ID = 0;
 
         std::cout << "Deseja inserir mais uma tarefa na Sprint? [Y/N]" << std::endl;
         std::cin >> comando;

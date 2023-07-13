@@ -122,12 +122,12 @@ void Sprint::gerarRelatorio(){
 }
 
 //Gerar relatório por desenvolvedor/pessoa (aqui implementa algoritmo de ordenação). (Ordem alfabética?)
-void Sprint::gerarRelatorioDeDev(Dev * p){
+void Sprint::gerarRelatorioDeDev(Pessoa * p){
   
 }
 
 //Operações para Devs.
-void Sprint::realizarTarefas(Dev * Responsavel, string instrucoes){
+void Sprint::realizarTarefas(Pessoa * Responsavel, string instrucoes){
     Tarefa * atual = this->cabeca->getProximo();
 
     while(atual != this->cauda){
@@ -138,7 +138,7 @@ void Sprint::realizarTarefas(Dev * Responsavel, string instrucoes){
     }
 }
 
-void Sprint::RealizarTarefaEspecifica(Dev * Responsavel, string instrucoes, Tarefa * tarefa){
+void Sprint::RealizarTarefaEspecifica(Pessoa * Responsavel, string instrucoes, Tarefa * tarefa){
     Tarefa * atual = this->cabeca->getProximo();
 
     while(atual != this->cauda){

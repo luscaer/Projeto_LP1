@@ -23,6 +23,8 @@ int main() {
     P.cadastrarTarefaBacklog(&B, &c);
     P.cadastrarTarefaBacklog(&B, &d);
     P.cadastrarTarefaBacklog(&B, &e);
+
+
     P.cadastrarTarefaBacklog(&B, &f);
     P.cadastrarTarefaBacklog(&B, &g);
     P.cadastrarTarefaBacklog(&B, &h);

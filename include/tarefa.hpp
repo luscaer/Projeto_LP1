@@ -2,7 +2,7 @@
 #define TAREFA_HPP
 
 #include <string>
-#include "dev.hpp"
+#include "pessoa.hpp"
 
 using namespace std;
 
@@ -14,15 +14,15 @@ class Tarefa {
         int PontosDeEsforco;
         string status;
         string instrucoes;
-        Dev * responsavel;
+        Pessoa * responsavel;
 
     public:
         //construtores e destrutores
         Tarefa();
         Tarefa(string instrucoes);
         Tarefa(int id, int PontosDeEsforco, string instrucoes);
-        Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel);
-        Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel, string status);
+        Tarefa(int id, int PontosDeEsforco, string instrucoes, Pessoa * responsavel);
+        Tarefa(int id, int PontosDeEsforco, string instrucoes, Pessoa * responsavel, string status);
         ~Tarefa();
 
         //funções
@@ -38,8 +38,8 @@ class Tarefa {
         string getStatus();
         void setInstrucoes(string instrucoes);
         string getInstrucoes();
-        void setResponsavel(Dev * responsavel);
-        Dev* getResponsavel();
+        void setResponsavel(Pessoa * responsavel);
+        Pessoa * getResponsavel();
         void imprimirTarefa();
 };
 

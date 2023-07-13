@@ -28,7 +28,7 @@ Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes){
   this->status="não iniciada";
 }
 
-Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel){
+Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Pessoa * responsavel){
   this->id = id;//id começa em 1
   this->PontosDeEsforco = PontosDeEsforco; 
   this->instrucoes=instrucoes;
@@ -36,7 +36,7 @@ Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel
   this->status="não iniciada";
 }
 
-Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Dev * responsavel, string status){
+Tarefa::Tarefa(int id, int PontosDeEsforco, string instrucoes, Pessoa * responsavel, string status){
   this->id = id;//id começa em 1
   this->PontosDeEsforco = PontosDeEsforco; 
   this->instrucoes =instrucoes;
@@ -82,10 +82,10 @@ void Tarefa::setInstrucoes(string instrucoes){
 string Tarefa::getInstrucoes(){
   return this->instrucoes;
 }
-void Tarefa::setResponsavel(Dev * responsavel){
+void Tarefa::setResponsavel(Pessoa * responsavel){
   this->responsavel = responsavel;
 }
-Dev* Tarefa::getResponsavel(){
+Pessoa * Tarefa::getResponsavel(){
   return this->responsavel;
 }
 

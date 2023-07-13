@@ -25,9 +25,9 @@ class Sprint{
         bool deletarTarefa(Tarefa *t);
         Tarefa * getTarefa(int id);
         void gerarRelatorio(); //Gerar relatório pôs ‘n’ tempo passado
-        void gerarRelatorioDeDev(Dev * p); //Gerar relatório do desenvolvedor/pessoa.
-        void realizarTarefas(Dev * Responsavel, string instrucoes);
-        void RealizarTarefaEspecifica(Dev * Responsavel, string instrucoes, Tarefa * tarefa);
+        void gerarRelatorioDeDev(Pessoa * p); //Gerar relatório do desenvolvedor/pessoa.
+        void realizarTarefas(Pessoa * Responsavel, string instrucoes);
+        void RealizarTarefaEspecifica(Pessoa * Responsavel, string instrucoes, Tarefa * tarefa);
 
         //bool ordenarAlfabetico();
         //bool ordenarPorPrioridade();

@@ -28,10 +28,10 @@ int main() {
     b.deletarTarefa(&y);
     b.consultar();
 
-    std::cout << "Teste 4 - ORGDENAR TAREFAS" << std::endl;
+    /*std::cout << "Teste 4 - ORDENAR TAREFAS" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
 
-    b.organizarTarefas();
+    b.organizarTarefas();*/
 
     return 0;
 }
