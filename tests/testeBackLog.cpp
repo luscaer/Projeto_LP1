@@ -13,9 +13,9 @@ int main() {
 
     std::cout << "Teste 1 - INSERIR TAREFAS" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    b.addTarefa(&x);
-    b.addTarefa(&y);
     b.addTarefa(&z);
+    b.addTarefa(&y);
+    b.addTarefa(&x);
     b.consultar();
 
     std::cout << "Teste 2 - BUSCAR ATRAVÉS DO ID" << std::endl;
