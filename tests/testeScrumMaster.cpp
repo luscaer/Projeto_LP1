@@ -26,9 +26,6 @@ int main() {
     P.cadastrarTarefaBacklog(&B, &f);
     P.cadastrarTarefaBacklog(&B, &g);
     P.cadastrarTarefaBacklog(&B, &h);
-    std::cout << "Teste 1 - CONSULTAR TAREFAS BACKLOG" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    B.consultar();
 
     Sprint S;
 
@@ -39,9 +36,6 @@ int main() {
     P.cadastrarTarefaSprint(&S, &B, 20);
     P.cadastrarTarefaSprint(&S, &B, 35);
     P.cadastrarTarefaSprint(&S, &B, 40);
-    std::cout << "Teste 2 - CONSULTAR TAREFAS SPRINT" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    S.gerarRelatorio();
 
     //Criação dos Devs
     Dev v = Dev("Nome 1");
@@ -71,10 +65,16 @@ int main() {
     ScrumMaster SM = ScrumMaster(nome);
     
     std::cout << "Olá " << nome << ". Seja bem vindo ao atribuidor de Tarefas!" << std::endl;
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                 Teste 1 - ATRIBUIR TAREFAS A DEVS              |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+
     std::cout << "Deseja atribuir uma tarefa? [Y/N]" << std::endl;
 
     char comando;
     std::cin >> comando;
+
     if(comando == 'N' || comando == 'n'){
         std::cout << "Ok, tenha um bom dia!" << std::endl;
         return 0;
@@ -83,25 +83,34 @@ int main() {
     Dev * atual = &v;
     int ID;
 
-    while(atual->getProximo() != nullptr){
+    while(atual != nullptr){
+        std::cout << "------------------------------------------------------------------" << std::endl;
+        std::cout << "|                           SPRINT ATUAL                         |" << std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
+        S.gerarRelatorio();
+
         std::cout << "Dev Atual: " << atual->getNome() << "." << std::endl;
         std::cout << "Deseja atribuir alguma tarefa ao " << atual->getNome() << "? [Y/N]" << std::endl;
         std::cin >> comando;
-        if(comando == 'Y' || comando == 'y'){
-            std::cout << "SPRINT ATIVA:" << std::endl;
-            std::cout << "------------------------------------------------------------------" << std::endl;
-            S.gerarRelatorio();
 
+        while(comando == 'Y' || comando == 'y'){
             std::cout << "Qual tarefa deseja atribuir? [DIGITE O ID]" << std::endl;
             std::cin >> ID;
 
             SM.atribuirTarefaAPessoa(&S, ID, atual);
+
+            std::cout << "Deseja atribuir mais alguma tarefa ao " << atual->getNome() << "? [Y/N]" << std::endl;
+            std::cin >> comando;
         }
 
         atual = atual->getProximo();
     }
 
-    std::cout << "Teste 3 - SPRINT APÓS ATRIBUIÇÕES" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                  TAREFAS ATRIBUIDAS COM SUCESSO                |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                           SPRINT ATUAL                         |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     S.gerarRelatorio();
 

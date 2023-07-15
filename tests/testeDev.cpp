@@ -23,14 +23,9 @@ int main() {
     P.cadastrarTarefaBacklog(&B, &c);
     P.cadastrarTarefaBacklog(&B, &d);
     P.cadastrarTarefaBacklog(&B, &e);
-
-
     P.cadastrarTarefaBacklog(&B, &f);
     P.cadastrarTarefaBacklog(&B, &g);
     P.cadastrarTarefaBacklog(&B, &h);
-    std::cout << "Teste 1 - CONSULTAR TAREFAS BACKLOG" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    B.consultar();
 
     Sprint S;
 
@@ -41,43 +36,63 @@ int main() {
     P.cadastrarTarefaSprint(&S, &B, 20);
     P.cadastrarTarefaSprint(&S, &B, 35);
     P.cadastrarTarefaSprint(&S, &B, 40);
-    std::cout << "Teste 2 - CONSULTAR TAREFAS SPRINT" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    S.gerarRelatorio();
 
     //Criação dos Devs
-    Dev x = Dev("Nome 1");
-    Dev y = Dev("Nome 2");
-    Dev z = Dev("Nome 3");
+    std::string nome;
+    std::cout << "Olá Dev, qual o seu nome?" << std::endl;
+    std::getline(std::cin, nome);
 
-    //Criação da lista encadeada de devs (Por enquanto não vai servir para nada).
-
-    x.setAnterior(nullptr);
-    x.setProximo(&y);
-    y.setAnterior(&x);
-    y.setProximo(&z);
-    z.setAnterior(&y);
-    z.setProximo(nullptr);
+    Dev x = Dev(nome);
 
     //Criação do Scrum Master
     ScrumMaster SM = ScrumMaster("Scrum Master");
     
     SM.atribuirTarefaAPessoa(&S, 5, &x);
-    SM.atribuirTarefaAPessoa(&S, 15, &y);
-    SM.atribuirTarefaAPessoa(&S, 20, &z);
+    SM.atribuirTarefaAPessoa(&S, 15, &x);
+    SM.atribuirTarefaAPessoa(&S, 20, &x);
     SM.atribuirTarefaAPessoa(&S, 35, &x);
-    SM.atribuirTarefaAPessoa(&S, 40, &y);
+    SM.atribuirTarefaAPessoa(&S, 40, &x);
 
-    std::cout << "Teste 3 - SPRINT APÓS ATRIBUIÇÕES" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    S.gerarRelatorio();
+    std::cout << "|                  Teste 1 - REALIZAÇÕES DE TAREFA               |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
 
-    std::cout << "Teste 4 (PRINCIPAL) - REALIZAÇÕES DE TAREFA" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    
-    x.RealizarTarefas(&S, "REALIZADA", &x);
-    y.RealizarTarefaEspecifica(&S, "REALIZADA", 40, &y);
-    z.RealizarTarefas(&S, "REALIZADA", &z);
+    int comando;
+    std::cout << "Olá Dev " << x.getNome() << "." << std::endl;
+    std::cout << "Escolha o que quer fazer:" << std::endl;
+    std::cout << "[1] Atualizar todas as suas tarefas." << std::endl;
+    std::cout << "[2] Atualizar tarefa específica." << std::endl;
+    std::cin >> comando;
+
+    if(comando == 1){
+        std::string comando2;
+        std::cout << "Qual o status atual de todas suas tarefas?" << std::endl;
+        std::cin.ignore();
+        std::getline(std::cin, comando2);
+
+        x.RealizarTarefas(&S, comando2, &x);
+    }
+    else if(comando == 2){
+        int ID;
+        char miniComando = 'y';
+        std::string comando2;
+
+        while(miniComando == 'y' || miniComando == 'Y'){
+            S.gerarRelatorio();
+            std::cout << "Deseja atualizar qual tarefa?" << std::endl;
+            std::cin >> ID;
+            std::cout << "Qual o status atual dessa tarefa?" << std::endl;
+            std::cin.ignore();
+            std::getline(std::cin, comando2);
+
+            x.RealizarTarefaEspecifica(&S, comando2, ID, &x);
+            std::cout << "Deseja atualizar mais uma tarefa? [Y/N]" << std::endl;
+            std::cin >> miniComando;
+        }
+    }
+    else{
+        std::cout << "Comando não reconhecido.";
+    }
 
     S.gerarRelatorio();
 

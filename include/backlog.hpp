@@ -23,8 +23,9 @@ public:
   bool deletarTarefa(Tarefa *t);
   void consultar(); // mostrar tarefas do backlog
   Tarefa * getTarefa(int id);
-  bool compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2);
-  void organizarTarefas();
+  void insertionSort();
+  //bool compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2);
+  //void organizarTarefas();
 };
 
 #endif

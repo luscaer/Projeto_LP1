@@ -9,8 +9,6 @@ int main() {
     ProductOwner P = ProductOwner("Product Owner");
     Backlog B;
 
-    std::cout << "Teste 1 - CRIAR TAREFAS" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
     Tarefa a = Tarefa(5, 10, "Teste 1", nullptr, "PARA FAZER");
     Tarefa b = Tarefa(10, 20, "Teste 2", nullptr, "PARA FAZER");
     Tarefa c = Tarefa(15, 30, "Teste 3", nullptr, "PARA FAZER");
@@ -19,11 +17,7 @@ int main() {
     Tarefa f = Tarefa(30, 60, "Teste 6", nullptr, "PARA FAZER");
     Tarefa g = Tarefa(35, 70, "Teste 7", nullptr, "PARA FAZER");
     Tarefa h = Tarefa(40, 80, "Teste 8", nullptr, "PARA FAZER");
-    std::cout << "TAREFAS CRIADAS" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
 
-    std::cout << "Teste 2 - CADASTRAR TAREFAS NO BACKLOG" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
     P.cadastrarTarefaBacklog(&B, &a);
     P.cadastrarTarefaBacklog(&B, &b);
     P.cadastrarTarefaBacklog(&B, &c);
@@ -32,53 +26,103 @@ int main() {
     P.cadastrarTarefaBacklog(&B, &f);
     P.cadastrarTarefaBacklog(&B, &g);
     P.cadastrarTarefaBacklog(&B, &h);
-    std::cout << "TAREFAS CADASTRADAS" << std::endl;
+
     std::cout << "------------------------------------------------------------------" << std::endl;
-    std::cout << "Teste 3 - CONSULTAR TAREFAS BACKLOG" << std::endl;
+    std::cout << "|                           BACKLOG ATUAL                         |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     B.consultar();
 
     Sprint SP;
 
-    std::cout << "Teste 4 - CADASTRAR DURAÇÃO DA SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.cadastrarDuracaoDaSprint(&SP, 21);
-    std::cout << "DURAÇÃO CADASTRADA" << std::endl;
+    std::cout << "|               Teste 1 - CADASTRAR DURAÇÃO DA SPRINT            |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+
+    int duracao;
+
+    std::cout << "Qual a duração da SPRINT?" << std::endl;
+    std::cin >> duracao;
+    P.cadastrarDuracaoDaSprint(&SP, duracao);
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                         DURAÇÃO CADASTRADA                     |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
     std::cout << "DURAÇÃO DA SPRINT: " << SP.getTempoDaSprint() << " DIAS" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
 
-    std::cout << "Teste 5 - CADASTRAR TAREFAS NA SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.cadastrarTarefaSprint(&SP, &B, 5);
-    P.cadastrarTarefaSprint(&SP, &B, 15);
-    P.cadastrarTarefaSprint(&SP, &B, 20);
-    P.cadastrarTarefaSprint(&SP, &B, 35);
-    P.cadastrarTarefaSprint(&SP, &B, 40);
-    std::cout << "TAREFAS CADASTRADAS" << std::endl;
+    std::cout << "|                  Teste 2 - INSERIR TAREFAS SPRINT              |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
+
+    char comando;
+    std::cout << "Deseja inserir uma tarefa na Sprint? [Y/N]" << std::endl;
+    std::cin >> comando;
+    if(comando == 'N'){
+        std::cout << "Ok, tenha um bom dia!" << std::endl;
+        return 0;
+    }
+
+    Sprint S;
+    int ID;
+
+    while(comando == 'Y' || comando == 'y'){
+        std::cout << "Qual Tarefa deseja inserir na Sprint? (Informe o ID)" << std::endl;
+        std::cin >> ID;
+
+        P.cadastrarTarefaSprint(&S, &B, ID);
+        S.gerarRelatorio();
+        ID = 0;
+
+        std::cout << "Deseja inserir mais uma tarefa na Sprint? [Y/N]" << std::endl;
+        std::cin >> comando;
+    }
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                         TAREFAS INSERIDAS                      |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    S.gerarRelatorio();
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                  Teste 4 - REMOVER TAREFAS SPRINT              |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+
+    std::cout << "Deseja remover uma tarefa da Sprint? [Y/N]" << std::endl;
+    std::cin >> comando;
+
+    if(comando == 'N'){
+        std::cout << "Ok, tenha um bom dia!" << std::endl;
+        return 0;
+    }
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                          TAREFAS NA SPRINT                     |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    S.gerarRelatorio();
+
+    while(comando == 'Y' || comando == 'y'){
+        int id;
+        std::cout << "Digite o ID da tarefa" << std::endl;
+        std::cin >> id;
+
+        Tarefa * t = S.getTarefa(id);
+
+        if(t == nullptr){
+            std::cout << "Não foi possível encontrar a tarefa com o ID fornecido." << std::endl;
+        }
+
+        P.deletarTarefaSprint(&S, t);
+
+        std::cout << "Deseja remover mais uma tarefa da Sprint? [Y/N]" << std::endl;
+        std::cin >> comando;
+    }
     
-    std::cout << "Teste 6 - CONSULTAR TAREFAS SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    SP.gerarRelatorio();
-
-    std::cout << "Teste 7 - DELETAR TAREFAS NA SPRINT" << std::endl;
+    std::cout << "|                   TAREFAS DELETADA COM SUCESSO                 |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.deletarTarefaSprint(&SP, &c);
-    P.deletarTarefaSprint(&SP, &h);
-    std::cout << "TAREFAS DELETADAS" << std::endl;
-
-    std::cout << "Teste 8 - CONSULTAR TAREFAS SPRINT" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    SP.gerarRelatorio();
-
-    std::cout << "Teste 9 - FALHA AO DELETAR TAREFAS NA SPRINT" << std::endl;
+    std::cout << "|                           SPRINT ATUAL                         |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
-    P.deletarTarefaSprint(&SP, &b);
-    P.deletarTarefaSprint(&SP, &f);
+    S.gerarRelatorio();
 
-    std::cout << "Teste 10 - CONSULTAR TAREFAS SPRINT" << std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    SP.gerarRelatorio();
-
-  return 0;
+    return 0;
 }

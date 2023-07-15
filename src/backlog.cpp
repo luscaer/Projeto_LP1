@@ -140,6 +140,46 @@ Tarefa * Backlog::getTarefa(int id){
     return nullptr;
 }
 
+void Backlog::insertionSort() {
+    //Backlog Vazio
+    if (this->cabeca->getProximo() == this->cauda) {
+        std::cout << "Backlog vazio, nada para ordenar." << std::endl;
+        return;
+    }
+    if (this->cabeca->getProximo()->getProximo() == this->cauda) {
+        std::cout << "Backlog com um elemento, nada para ordenar." << std::endl;
+        return;
+    }
+
+    Tarefa* atual = this->cabeca->getProximo()->getProximo();
+
+    while (atual != nullptr) {
+        Tarefa* chave = atual;
+        Tarefa* anterior = atual->getAnterior();
+
+        while (anterior != nullptr && anterior->getPontosDeEsforco() < chave->getPontosDeEsforco()) {
+            // Movendo o nó para a posição correta
+            Tarefa* proximo = anterior->getAnterior();
+
+            anterior->getAnterior()->setProximo(chave);
+            chave->setAnterior(anterior->getAnterior());
+
+            chave->setProximo(anterior);
+            anterior->setAnterior(chave);
+
+            anterior->setProximo(proximo);
+            if (proximo != nullptr) {
+                proximo->setAnterior(anterior);
+            }
+
+            anterior = proximo;
+        }
+
+        atual = atual->getProximo();
+    }
+}
+
+
 /*Orgnizar tarefas em ordem decrescente de acordo com os Pontos de esforço
 
 bool Backlog::compararPorPontosDeEsforco(Tarefa* t1, Tarefa* t2) {

@@ -24,11 +24,14 @@ int main() {
 
     //CRIANDO E INSERINDO  TAREFAS NO BACKLOG
     Backlog b;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                 Teste 1 - INSERIR TAREFAS BACKLOG              |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
 
     std::cout << "Deseja inserir uma tarefa no BackLog? [Y/N]" << std::endl;
     std::cin >> comando;
 
-    while(comando =='Y'){
+    while(comando == 'Y' || comando == 'y'){
         int id, PontosDeEsforco;
         std::string instrucoes, status;
 
@@ -49,17 +52,24 @@ int main() {
         std::cout << "Deseja inserir mais uma tarefa no BackLog? [Y/N]" << std::endl;
         std::cin >> comando;
     }
-
-    std::cout << "Teste 1 - CONSULTAR TAREFAS BACKLOG" << std::endl;
+    std::cout << "\033[2J"; // Sequência de escape para limpar a tela
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                         TAREFAS INSERIDAS                      |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     b.consultar();
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                 Teste 2 - DELETAR TAREFAS BACKLOG              |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
 
     std::cout << "Deseja remover uma tarefa do BackLog? [Y/N]" << std::endl;
     std::cin >> comando;
 
-    while(comando == 'Y'){
-        std::cout << "TAREFAS NO BACKLOG" << std::endl;
+    while(comando == 'Y' || comando == 'y'){
         std::cout << "------------------------------------------------------------------" << std::endl;
+        std::cout << "|                         TAREFAS NO BACKLOG                     |" << std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
+
         b.consultar();
 
         int id;
@@ -71,17 +81,24 @@ int main() {
         if(t == nullptr){
             std::cout << "Não foi possível encontrar a tarefa com o ID fornecido." << std::endl;
         }
-
-        //b.deletarTarefa(t);
-        P.deletarTarefaBacklog(&b, t);
-
+        else{
+            P.deletarTarefaBacklog(&b, t);
+        }
+        
         std::cout << "Deseja remover mais uma tarefa do BackLog? [Y/N]" << std::endl;
         std::cin >> comando;
     }
-    
-    std::cout << "Teste 2 - DELETAR TAREFAS BACKLOG" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                   TAREFAS DELETADA COM SUCESSO                 |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                           BACKLOG ATUAL                         |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     b.consultar();
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                  Teste 3 - INSERIR TAREFAS SPRINT              |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
 
     std::cout << "Deseja inserir uma tarefa na Sprint? [Y/N]" << std::endl;
     std::cin >> comando;
@@ -93,11 +110,7 @@ int main() {
     Sprint S;
     int ID;
 
-    while(comando == 'Y'){
-        std::cout << "TAREFAS NO BACKLOG" << std::endl;
-        std::cout << "------------------------------------------------------------------" << std::endl;
-        //b.consultar(); Erro na segunda consulta
-
+    while(comando == 'Y' || comando == 'y'){
         std::cout << "Qual Tarefa deseja inserir na Sprint? (Informe o ID)" << std::endl;
         std::cin >> ID;
 
@@ -109,18 +122,29 @@ int main() {
         std::cin >> comando;
     }
 
-    std::cout << "Teste 3 - CONSULTAR TAREFAS SPRINT" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                         TAREFAS INSERIDAS                      |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     S.gerarRelatorio();
+
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                  Teste 4 - REMOVER TAREFAS SPRINT              |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
 
     std::cout << "Deseja remover uma tarefa da Sprint? [Y/N]" << std::endl;
     std::cin >> comando;
 
-    while(comando == 'Y'){
-        std::cout << "TAREFAS NA SPRINT" << std::endl;
-        std::cout << "------------------------------------------------------------------" << std::endl;
-        S.gerarRelatorio();
+    if(comando == 'N'){
+        std::cout << "Ok, tenha um bom dia!" << std::endl;
+        return 0;
+    }
 
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                          TAREFAS NA SPRINT                     |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    S.gerarRelatorio();
+
+    while(comando == 'Y' || comando == 'y'){
         int id;
         std::cout << "Digite o ID da tarefa" << std::endl;
         std::cin >> id;
@@ -137,7 +161,11 @@ int main() {
         std::cin >> comando;
     }
     
-    std::cout << "Teste 3 - DELETAR TAREFAS SPRINT" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                   TAREFAS DELETADA COM SUCESSO                 |" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    std::cout << "|                           SPRINT ATUAL                         |" << std::endl;
     std::cout << "------------------------------------------------------------------" << std::endl;
     S.gerarRelatorio();
 
